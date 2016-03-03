@@ -1,0 +1,16 @@
+<h1>Log In</h1>
+<%= form_tag sessions_path do %>
+  <% flash.each do |name, msg| %>
+  <%= content_tag :p, msg if msg.is_a?(String) %>
+  <% end %>
+
+  <%= label_tag :email %>
+  <%= text_field_tag :email, params[:email] %>
+  <br/>
+
+  <%= label_tag :password %>
+  <%= password_field_tag :password %>
+  <br/>
+
+  <%= submit_tag "Log In" %>
+<% end %>

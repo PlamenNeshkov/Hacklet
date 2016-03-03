@@ -6,9 +6,26 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="smoothscroll enable-animation">
 
-<%= yield %>
+  <div id="slidetop">
 
+  </div>
+
+  <div id="wrapper">
+    <div id="topBar">
+
+    </div>
+
+    <div id="header">
+
+    </div>
+
+    <%= yield %>
+  </div>
+
+  <footer id="footer">
+    
+  </footer>
 </body>
 </html>
