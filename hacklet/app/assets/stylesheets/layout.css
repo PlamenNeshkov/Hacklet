@@ -1667,7 +1667,7 @@ section.dark.page-header ul.page-options a {
 		text-transform:uppercase;
 	}
 		body.menu-vertical #mainMenu.sidebar-vertical .navbar-default .navbar-nav>li>a.dropdown-toggle {
-			background-image: url('../images/submenu_light.png');
+			background-image: url(asset_path(submenu_light.png));
 			background-position:center right;
 			background-repeat:no-repeat;
 		}
@@ -3189,7 +3189,7 @@ section.dark.page-header ul.page-options a {
 
 	/* LIGHT SUBMENU */
 	#topNav ul.dropdown-menu a.dropdown-toggle {
-		background-image: url('../images/submenu_light.png');
+		background-image: url(asset_path(submenu_light.png));
 	}
 
 
