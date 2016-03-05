@@ -1,12 +1,11 @@
-<%= form_for(@event) do |f| %>
+<%= form_for @event, :html => {:multipart => true} do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
+      <h2><%= pluralize(@event.errors.count, "error") %> occurred:</h2>
       <ul>
-      <% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -20,8 +19,10 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :image %><br>
-    <%= f.text_field :image %>
+    <%= f.file_field :image %><br>
+    <%= f.hidden_field :image_cache %>
+    <br />
+    <%= image_tag(@event.image_url) if @event.image? %>
   </div>
   <div class="field">
     <%= f.label :start %><br>

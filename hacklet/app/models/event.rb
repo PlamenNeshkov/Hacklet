@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
-  validates :title, :description, :image, :start, :end, :max_participants,
-    presence: true
+  mount_uploader :image, EventImageUploader
+
+  validates :title, :description, :image,
+    :start, :end, :max_participants, presence: true
   validates :title, uniqueness: true
   validates :image, format: {
     with: %r{\.(gif|jpg|png)\Z}i,

@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= image_tag @event.image_url.to_s if @event.image_url.present? %>
+
 <p>
   <strong>Title:</strong>
   <%= @event.title %>
@@ -8,11 +10,6 @@
 <p>
   <strong>Description:</strong>
   <%= @event.description %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @event.image %>
 </p>
 
 <p>
