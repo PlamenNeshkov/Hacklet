@@ -1,43 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Hacklet</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <head>
+    <title>Hacklet</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 
+      'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+    <!--[if IE]>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+    <![endif]-->
+  </head>
+  <body class="smoothscroll enable-animation">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
-  <!-- mobile settings -->
-  <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
-  <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-
-</head>
-
-<body class="smoothscroll enable-animation">
-
-  <div id="wrapper">
-    <div id="topBar">
-
+    <div class="wrapper">
+      <%= yield %>
     </div>
-
-    <%= yield %>
-  </div>
-
-
-
-  </div>
-  <!-- /wrapper -->
-
-
-  <!-- SCROLL TO TOP -->
-  <a href="#" id="toTop"></a>
-
-
-  <!-- PRELOADER -->
-  <!-- <div id="preloader">
-    <div class="inner">
-      <span class="loader"></span>
-    </div>
-  </div> -->
-  <!-- /PRELOADER -->
-</body>
+  </body>
 </html>
