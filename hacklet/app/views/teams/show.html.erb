@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name</strong>
+  <%= @team.name %>
+</p>
+
+<p>
+  <strong>Event</strong>
+  <%= @team.event.title %>
+</p>
+
+<p>
+  <strong>Captain</strong>
+  <%= @team.captain.email %>
+</p>
+
+<% if @team.captain == current_user %>
+  <%= link_to 'Edit', edit_team_path(@team) %> |
+<% end %>
+<%= link_to 'Back', teams_path %>

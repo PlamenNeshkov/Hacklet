@@ -11,18 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306002338) do
+ActiveRecord::Schema.define(version: 20160310195057) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
+    t.string   "image"
     t.datetime "start"
     t.datetime "end"
     t.integer  "max_participants"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "image"
+    t.boolean  "active"
   end
+
+  create_table "invites", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "received_id"
+    t.datetime "sent_on"
+    t.boolean  "accepted"
+  end
+
+  add_index "invites", ["received_id"], name: "index_invites_on_received_id"
+  add_index "invites", ["sender_id"], name: "index_invites_on_sender_id"
+
+  create_table "participants", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "team_id"
+    t.integer "invite_id"
+  end
+
+  add_index "participants", ["invite_id"], name: "index_participants_on_invite_id"
+  add_index "participants", ["team_id"], name: "index_participants_on_team_id"
+  add_index "participants", ["user_id"], name: "index_participants_on_user_id"
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "event_id"
+    t.integer  "captain_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "teams", ["captain_id"], name: "index_teams_on_captain_id"
+  add_index "teams", ["event_id"], name: "index_teams_on_event_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
