@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  resources :teams
+  # General
+  root to: 'home#index'
   get 'home/index'
 
-  root to: 'home#index'
-
-  devise_for :users
-
+  # Custom
+  resources :teams
   resources :events
+
+  # Third party
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  devise_for :users
 end
