@@ -1,16 +1,16 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
-//= require jquery
-//= require jquery_ujs
 //= require turbolinks
-//= require_directory .
+//= require jquery/jquery-2.1.4.min
+//= require smarty/scripts
+//= require smarty/contact
+//= require smarty/custom.file_upload
+//= require bootstrap/bootstrap.min
+//= require jquery.nav/jquery.nav.min
+//= require owl-carousel/owl.carousel.min
+//= require countdown/jquery.countdown.pack.min
+//= require bootstrap.datepicker/bootstrap-datepicker.min
+//= require bootstrap.datepicker/bootstrap-datepicker.bg.min
+//= require bootstrap.datepicker/bootstrap-datepicker.en-GB.min
+//= require form.validate/jquery.form.min
+//= require form.validate/jquery.validation.min
+//= require widget.twittie/twittie.min
+//= require_self
