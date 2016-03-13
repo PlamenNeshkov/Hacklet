@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Custom
   resources :teams
   resources :events
+  resources :invites
 
   # Third party
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

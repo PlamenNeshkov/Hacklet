@@ -26,13 +26,16 @@ ActiveRecord::Schema.define(version: 20160310195057) do
   end
 
   create_table "invites", force: :cascade do |t|
+    t.string   "email"
     t.integer  "sender_id"
-    t.integer  "received_id"
+    t.integer  "recipient_id"
     t.datetime "sent_on"
     t.boolean  "accepted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "invites", ["received_id"], name: "index_invites_on_received_id"
+  add_index "invites", ["recipient_id"], name: "index_invites_on_recipient_id"
   add_index "invites", ["sender_id"], name: "index_invites_on_sender_id"
 
   create_table "participants", force: :cascade do |t|

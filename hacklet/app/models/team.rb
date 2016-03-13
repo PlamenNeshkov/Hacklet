@@ -1,8 +1,9 @@
 class Team < ActiveRecord::Base
   belongs_to :event
-  belongs_to :captain, class_name: 'User'
-  has_many :participants
-  has_many :members, through: :participants
+  has_many :participations
+  has_many :members, through: :participations, class_name: 'User'
+  has_many :invites
+  has_one :captain, class_name: 'User'
   before_create :check_user_team_uniqueness
 
   private
