@@ -16,7 +16,7 @@
   .shadow-after-3 	= shadow 3 header bottom
 -->
 
-<section class="page-header">
+<!-- <section class="page-header">
   <div class="container">
     <h1>REGISTER</h1>
     <ol class="breadcrumb">
@@ -25,7 +25,7 @@
       <li class="active">Register</li>
     </ol>
   </div>
-</section>
+</section> TO IMPLEMENT IN PARTIAL -->
 <section>
   <div class="container">
     <div class="row">
@@ -43,13 +43,13 @@
             <fieldset class="nomargin">
               <label class="input margin-bottom-10">
                 <i class="ico-append fa fa-envelope"></i>
-                <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
+                <%= f.email_field :email, autofocus: true, placeholder: 'Email', required: true %>
                 <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
               </label>
               <label class="input margin-bottom-10">
                 <i class="ico-append fa fa-lock"></i>
                 <%= f.password_field :password, autocomplete: 'off',
-                  placeholder: 'Password' %>
+                  placeholder: 'Password', required: true %>
                 <b class="tooltip tooltip-bottom-right">
                   <% if @minimum_password_length %>
                     <%= @minimum_password_length %> characters minimum
@@ -61,7 +61,7 @@
               <label class="input margin-bottom-10">
                 <i class="ico-append fa fa-lock"></i>
                 <%= f.password_field :password_confirmation,
-                  autocomplete: 'off', placeholder: 'Confirm password' %>
+                  autocomplete: 'off', placeholder: 'Confirm password', required: true %>
                 <b class="tooltip tooltip-bottom-right">
                   <% if @minimum_password_length %>
                     <%= @minimum_password_length %> characters minimum
@@ -106,9 +106,6 @@
             <% if @token != nil %>
               <%= hidden_field_tag :invite_token, @token %>
             <% end %>
-            <footer>
-              <%= render "users/shared/links" %>
-            </footer>
           <% end %>
       </div>
 
@@ -132,6 +129,9 @@
               </div>
             </div>
           </fieldset>
+          <footer>
+            <%= render "users/shared/links" %>
+          </footer>
         </form>
       </div>
     </div>

@@ -1,12 +1,36 @@
-<div id="header" class="sticky header-md clearfix">
+<div id="header" class="clearfix">
+  <div class="search-box over-header">
+    <a id="closeSearch" href="#" class="glyphicon glyphicon-remove"></a>
+
+    <form action="#todo" method="get">
+      <input type="text" class="form-control" placeholder="SEARCH" />
+    </form>
+  </div>
+
   <header id="topNav">
     <div class="container">
       <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
         <i class="fa fa-bars"></i>
       </button>
-      <a class="logo pull-left scrollTo" href="#top">
+
+      <ul class="pull-right nav nav-pills nav-second-main">
+        <li class="search">
+          <a href="javascript:;">
+            <i class="fa fa-search"></i>
+          </a>
+        </li>
+
+        <li>
+          <%= link_to new_user_session_url do %>
+            <i class="fa fa-sign-in"></i>
+          <% end %>
+        </li>
+      </ul>
+
+      <a class="logo pull-left" href="/">
         <%= image_tag 'smarty/logo_dark.png' %>
       </a>
+
       <div class="navbar-collapse pull-right nav-main-collapse collapse submenu-dark">
         <nav class="nav-main">
           <ul id="topMain" class="nav nav-pills nav-main nav-onepage">

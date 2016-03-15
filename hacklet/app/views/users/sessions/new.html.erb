@@ -1,26 +1,64 @@
-<h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <%= form_for resource, as: resource_name, url: session_path(resource_name), html: {class: 'sky-form boxed'} do |f| %>
+          <header class="size-18 margin-bottom-20">
+            I'm a returning customer
+          </header>
+          <fieldset class="nomargin">
+            <label class="input margin-bottom-10">
+              <i class="ico-append fa fa-envelope"></i>
+              <%= f.email_field :email, autofocus: true, placeholder: 'Email', required: true %>
+              <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+            </label>
+            <label class="input margin-bottom-10">
+              <i class="ico-append fa fa-lock"></i>
+              <%= f.password_field :password, autocomplete: "off", placeholder: 'Password', required: true %>
+              <b class="tooltip tooltip-bottom-right">Only latin characters and numbers</b>
+            </label>
+            <div class="clearfix note margin-bottom-30">
+              <%= link_to "Forgot your password?", new_password_path(resource_name), class: 'pull-right' %><br />
+            </div>
+            <label class="checkbox weight-300">
+              <%= f.check_box :remember_me, name: 'checkbox-inline' %>
+              <i></i> Keep me logged in
+            </label>
+          </fieldset>
+          <footer>
+            <%= f.button type: 'submit', class: 'btn btn-primary noradius pull-right' do %>
+              <i class="fa fa-check"></i> LOG IN
+            <% end %>
+          </footer>
+        <% end %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <div class="col-md-6 col-sm-6">
+        <form action="#" method="post" class="sky-form boxed">
+          <header class="size-18 margin-bottom-20">
+            Sign in using your favourite social network
+          </header>
+          <fieldset class="nomargin">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <a class="btn btn-block btn-social btn-facebook margin-bottom-10">
+                  <i class="fa fa-facebook"></i> Sign in with Facebook
+                </a>
+                <a class="btn btn-block btn-social btn-twitter margin-bottom-10">
+                  <i class="fa fa-twitter"></i> Sign in with Twitter
+                </a>
+                <a class="btn btn-block btn-social btn-google margin-bottom-10">
+                  <i class="fa fa-google-plus"></i> Sign in with Google
+                </a>
+              </div>
+            </div>
+          </fieldset>
+          <footer>
+            <%= render "users/shared/links" %>
+          </footer>
+        </form>
+      </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</section>

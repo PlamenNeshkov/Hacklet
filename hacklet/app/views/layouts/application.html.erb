@@ -17,22 +17,22 @@
 <body class="smoothscroll enable-animation">
   <div id="wrapper">
     <%= render 'shared/header' %>
-    <%= yield  %>
+    <%= yield %>
   </div>
 
   <%= render 'shared/footer' %>
 
   <a href="#" id="toTop"></a>
-  <div id="preloader">
+  <!-- <div id="preloader">
     <div class="inner">
       <span class="loader"></span>
     </div>
-  </div>
+  </div> REMOVED FOR NOW -->
 
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script type="text/javascript">var plugin_path = 'assets/plugins/';</script>
-  <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script> -->
+  <!-- <script type="text/javascript">
     jQuery(document).ready(function(){
       var map2 = new GMaps({
         div: '#map2',
@@ -47,6 +47,6 @@
         title: 'Company, Inc.'
       });
     });
-  </script>
+  </script> -->
 </body>
 </html>
