@@ -10,5 +10,10 @@ Rails.application.routes.draw do
 
   # Third party
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
+
+  # RETARDED INDIAN CSS MAZACH
+  devise_scope :user do
+    post "/users/sign_up" => "users/registrations#create"
+  end
 end

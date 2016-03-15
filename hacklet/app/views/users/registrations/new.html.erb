@@ -35,10 +35,8 @@
             <%= devise_error_messages! %>
           </div>
         <% end %>
-        <form class="nomargin sky-form boxed" action="#" method="post">
-          <%= form_for resource, as: resource_name,
-            url: registration_path(resource_name),
-            class: "nomargin sky-form boxed" do |f| %>
+        <form class="nomargin sky-form boxed" method="post">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <header>
               <i class="fa fa-users"></i> Register
             </header>
@@ -270,12 +268,12 @@
 
 
         <p class="margin-top30">
-          <strong>By using this  WEBSITE TERMS AND CONDITIONS template document, you agree to the 
-            <a href="#">terms and conditions</a> set out on 
-            <a href="#">yourdomain.com</a>.  You must retain the credit 
-            set out in the section headed "ABOUT THESE WEBSITE TERMS AND CONDITIONS".  Subject to the licensing restrictions, you should 
-            edit the document, adapting it to the requirements of your jurisdiction, your business and your 
-            website.  If you are not a lawyer, we recommend that you take professional legal advice in relation to the editing and 
+          <strong>By using this  WEBSITE TERMS AND CONDITIONS template document, you agree to the
+            <a href="#">terms and conditions</a> set out on
+            <a href="#">yourdomain.com</a>.  You must retain the credit
+            set out in the section headed "ABOUT THESE WEBSITE TERMS AND CONDITIONS".  Subject to the licensing restrictions, you should
+            edit the document, adapting it to the requirements of your jurisdiction, your business and your
+            website.  If you are not a lawyer, we recommend that you take professional legal advice in relation to the editing and
             use of the template.</strong>
         </p>
 

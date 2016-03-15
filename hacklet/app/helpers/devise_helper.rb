@@ -8,8 +8,8 @@ module DeviseHelper
                       :resource => resource.class.model_name.human.downcase)
 
     html = <<-HTML
-    <h2>#{sentence}</h2>
-    <ul>#{messages}</ul>
+    <h4>#{sentence}</h4>
+    #{messages}
     HTML
 
     html.html_safe
