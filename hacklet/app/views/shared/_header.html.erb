@@ -14,16 +14,26 @@
       </button>
 
       <ul class="pull-right nav nav-pills nav-second-main">
+        <% if current_user != nil %>
+          <li>
+            <%= link_to current_user.email, edit_user_registration_path %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_url do %>
+              <i class="fa fa-sign-out"></i>
+            <% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to new_user_session_url do %>
+              <i class="fa fa-sign-in"></i>
+            <% end %>
+          </li>
+        <% end %>
         <li class="search">
           <a href="javascript:;">
             <i class="fa fa-search"></i>
           </a>
-        </li>
-
-        <li>
-          <%= link_to new_user_session_url do %>
-            <i class="fa fa-sign-in"></i>
-          <% end %>
         </li>
       </ul>
 
@@ -37,13 +47,16 @@
             <li class="active"><a href="#slider"> HOME </a></li>
             <li><a href="#news"> NEWS </a></li>
             <li><a href="#events"> EVENTS </a></li>
-            <li><a href="#reservation"> RESERVATION </a></li>
             <li>
               <a class="external" href="blog-default-aside-left.html">
                 BLOG
               </a>
             </li>
-            <li><a href="#contact"> CONTACT </a></li>
+            <li>
+              <a class="external" href="/team">
+                TEAM
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
