@@ -5,6 +5,7 @@
 //= require smarty/custom.file_upload
 //= require bootstrap/bootstrap.min
 //= require jquery.nav/jquery.nav.min
+//= require jquery.slimscroll/jquery.slimscroll.min
 //= require owl-carousel/owl.carousel.min
 //= require countdown/jquery.countdown.pack.min
 //= require bootstrap.datepicker/bootstrap-datepicker.min

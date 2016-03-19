@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # General
-  root to: 'home#index'
-  get 'home/index'
+  root to: "home#index"
+  get "home/index"
 
   # Custom
   resources :teams
@@ -9,11 +9,13 @@ Rails.application.routes.draw do
   resources :invites
 
   # Third party
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine => "/admin", as: "rails_admin"
   devise_for :users, :controllers => {:registrations => "users/registrations"}
 
-  # RETARDED INDIAN CSS MAZACH
   devise_scope :user do
     post "/users/sign_up" => "users/registrations#create"
+    get "users/:id/profile", to: "users/registrations#profile", as: "profile"
+    get "users/:id/projects", to: "users/registrations#projects", as: "user_projects"
+    get "users/:id/settings", to: "users/registrations#settings", as: "user_settings"
   end
 end

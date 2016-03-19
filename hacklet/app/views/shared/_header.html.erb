@@ -16,7 +16,7 @@
       <ul class="pull-right nav nav-pills nav-second-main">
         <% if current_user != nil %>
           <li>
-            <%= link_to current_user.email, edit_user_registration_path %>
+            <%= link_to current_user.email, profile_path(id: current_user.id) %>
           </li>
           <li>
             <%= link_to destroy_user_session_url do %>

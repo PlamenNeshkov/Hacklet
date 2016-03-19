@@ -3053,9 +3053,7 @@
 		var _container = jQuery('.slimscroll');
 
 		if(_container.length > 0) {
-
-			loadScript(plugin_path + 'slimscroll/jquery.slimscroll.min.js', function() {
-
+            loadScript('<%= asset_path 'jquery.slimscroll/jquery.slimscroll.min.js' %>', function() {
 				if(jQuery().slimScroll) {
 
 					jQuery('.slimscroll').each(function () {

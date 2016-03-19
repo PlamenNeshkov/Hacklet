@@ -1,12 +1,4 @@
-<section class="page-header page-header-xs">
-  <div class="container">
-    <ol class="breadcrumb breadcrumb-inverse">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Profiles</a></li>
-      <li class="active"><%= @current_user.email %></li>
-    </ol>
-  </div>
-</section>
+<%= render 'breadcrumbs' %>
 
 <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
   <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -29,7 +21,7 @@
             <div class="form-group">
               <%= f.label :email, class: 'control-label' %><br />
               <%= f.email_field :email, autofocus: true,
-                placeholder: @current_user.email, class: 'form-control' %>
+                placeholder: @user.email, class: 'form-control' %>
             </div>
 
             <!-- TODO: Add custom user attributes here -->
@@ -106,47 +98,8 @@
         </div>
       </div>
     </div>
-
     <div class="col-lg-3 col-md-3 col-sm-4 col-lg-pull-9 col-md-pull-9 col-sm-pull-8">
-      <div class="thumbnail text-center">
-        <img class="img-responsive"
-             src="<%= asset_path 'smarty/demo/people/460x700/8-min.jpg' %>"
-             alt="" />
-        <h2 class="size-18 margin-top-10 margin-bottom-0"><%= @current_user.email %></h2>
-        <h3 class="size-11 margin-top-0 margin-bottom-10 text-muted">Participant</h3>
-      </div>
-      <ul class="side-nav list-group margin-bottom-60" id="sidebar-nav">
-        <li class="list-group-item"><a href="page-profile.html"><i class="fa fa-eye"></i> PROFILE</a></li>
-        <li class="list-group-item"><a href="page-profile-projects.html"><i class="fa fa-tasks"></i> PARTICIPATIONS</a></li>
-        <li class="list-group-item"><a href="page-profile-comments.html"><i class="fa fa-comments-o"></i> COMMENTS</a></li>
-        <li class="list-group-item"><a href="page-profile-history.html"><i class="fa fa-history"></i> HISTORY</a></li>
-        <li class="list-group-item active"><a href="page-profile-settings.html"><i class="fa fa-gears"></i> SETTINGS</a></li>
-      </ul>
-
-      <div class="box-light margin-bottom-30">
-        <div class="row margin-bottom-20">
-          <div class="col-md-4 col-sm-4 col-xs-4 text-center bold">
-            <h2 class="size-30 margin-top-10 margin-bottom-0 font-raleway">12</h2>
-            <h3 class="size-11 margin-top-0 margin-bottom-10 text-info">PARTICIPATIONS</h3>
-          </div>
-
-          <div class="col-md-4 col-md-offset-4 col-sm-4 col-xs-4 text-center bold">
-            <h2 class="size-30 margin-top-10 margin-bottom-0 font-raleway">5</h2>
-            <h3 class="size-11 margin-top-0 margin-bottom-10 text-info">AWARDS</h3>
-          </div>
-        </div>
-
-        <div class="text-muted">
-          <h2 class="size-18 text-muted margin-bottom-6"><b>About</b></h2>
-          <p>I'm a funny one m8.</p>
-          <ul class="list-unstyled nomargin">
-            <li class="margin-bottom-10"><i class="fa fa-globe width-20 hidden-xs hidden-sm"></i> <a href="http://www.example.com">www.example.com</a></li>
-            <li class="margin-bottom-10"><i class="fa fa-facebook width-20 hidden-xs hidden-sm"></i> <a href="http://www.facebook.com/example">example</a></li>
-            <li class="margin-bottom-10"><i class="fa fa-twitter width-20 hidden-xs hidden-sm"></i> <a href="http://www.twitter.com/example">@example</a></li>
-          </ul>
-        </div>
-      </div>
+      <%= render 'left_sidebar' %>
     </div>
-  </div>
 </section>
 

@@ -1,0 +1,127 @@
+<%= render 'breadcrumbs' %>
+
+<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+<% end %>
+
+<section>
+  <div class="container">
+    <div class="col-lg-3 col-md-3 col-sm-4">
+      <%= render 'left_sidebar' %>
+    </div>
+
+    <div class="col-lg-9 col-md-9 col-sm-8">
+      <div class="box-flip box-icon box-icon-center box-icon-round box-icon-large text-center nomargin">
+        <div class="front">
+          <div class="box1 noradius">
+            <div class="box-icon-title">
+              <i class="fa fa-user"></i>
+              <h2><%= @user.email %> &ndash; Profile</h2>
+            </div>
+            <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere</p>
+          </div>
+        </div>
+
+        <div class="back">
+          <div class="box2 noradius">
+            <h4>WHO AM I?</h4>
+            <hr />
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="box-light">
+        <div class="row">
+          <div class="col-md-6 col-sm-6">
+            <div class="box-inner">
+              <h3>
+                <a class="pull-right size-11 text-warning" href="#">VIEW ALL</a>
+                PARTICIPATIONS
+              </h3>
+              <div class="height-250 slimscroll" data-always-visible="true" data-size="5px" data-position="right" data-opacity="0.4" disable-body-scroll="true">
+                <div class="clearfix margin-bottom-10">
+                  <img class="thumbnail pull-left" src="assets/images/demo/people/300x300/b-min.jpg" width="60" height="60" alt="" />
+                  <h4 class="size-13 nomargin noborder nopadding"><a href="blog-single-default.html">HackTUES 3</a></h4>
+                  <span class="size-11 text-muted">June 29, 2015</span>
+                </div>
+                <div class="clearfix margin-bottom-10">
+                  <img class="thumbnail pull-left" src="assets/images/demo/people/300x300/6-min.jpg" width="60" height="60" alt="" />
+                  <h4 class="size-13 nomargin noborder nopadding"><a href="blog-single-default.html">HackTUES 2</a></h4>
+                  <span class="size-11 text-muted">June 29, 2015</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-sm-6">
+            <div class="box-inner">
+              <h3>
+                <a class="pull-right size-11 text-warning" href="#">VIEW ALL</a>
+                AWARDS
+              </h3>
+              <div class="height-250 slimscroll" data-always-visible="true" data-size="5px" data-position="right" data-opacity="0.4" disable-body-scroll="true">
+                <div class="clearfix margin-bottom-10"><!-- squared item -->
+                  <img class="thumbnail pull-left" src="assets/images/demo/people/300x300/1-min.jpg" width="40" height="40" alt="" />
+                  <h4 class="size-14 nomargin noborder nopadding bold"><a href="#">First place</a></h4>
+                  <span class="size-12 text-muted">HackTUES 3</span>
+                </div>
+                <div class="clearfix margin-bottom-10"><!-- rounded item -->
+                  <img class="thumbnail pull-left rounded" src="assets/images/demo/people/300x300/2-min.jpg" width="40" height="40" alt="" />
+                  <h4 class="size-14 nomargin noborder nopadding bold"><a href="#">Third place</a></h4>
+                  <span class="size-12 text-muted">HackTUES 2</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row margin-top-30">
+          <div class="col-md-6 col-sm-6">
+            <div class="box-inner">
+              <h3>
+                <a class="pull-right size-11 text-warning" href="#">VIEW ALL</a>
+                CHECK-INS
+              </h3>
+              <div class="height-250 slimscroll" data-always-visible="true" data-size="5px" data-position="right" data-opacity="0.4" disable-body-scroll="true">
+                <div class="clearfix margin-bottom-20">
+                  <h4 class="size-15 nomargin noborder nopadding bold"><a href="#">First day</a></h4>
+                  <span class="size-13 text-muted">
+                    HackTUES 3
+                    <span class="text-success size-11">12 minutes ago</span>
+                  </span>
+                </div>
+                <div class="clearfix margin-bottom-20"><!-- discussion item -->
+                  <h4 class="size-15 nomargin noborder nopadding bold"><a href="#">Second day - pizza</a></h4>
+                  <span class="size-13 text-muted">
+                    HackTUES 2
+                    <span class="text-success size-11">3 months ago</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-sm-6">
+            <div class="box-inner">
+              <h3>
+                <a class="pull-right size-11 text-warning" href="#">VIEW ALL</a>
+                TEAMS
+              </h3>
+              <div class="height-250 slimscroll" data-always-visible="true" data-size="5px" data-position="right" data-opacity="0.4" disable-body-scroll="true">
+                <div class="clearfix margin-bottom-10">
+                  <h4 class="size-13 nomargin noborder nopadding"><a href="blog-single-default.html">Bavnqrite</a></h4>
+                  <span class="size-11 text-muted">HackTUES 3</span>
+                </div>
+                <div class="clearfix margin-bottom-10">
+                  <h4 class="size-13 nomargin noborder nopadding"><a href="blog-single-default.html">Paki Crew</a></h4>
+                  <span class="size-11 text-muted">HackTUES 2</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
