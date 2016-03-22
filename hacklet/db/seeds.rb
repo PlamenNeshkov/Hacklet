@@ -12,4 +12,9 @@ Event.create!(title: "HackTUES 2",
              image: "logo.png",
              start: DateTime.new(2015, 10, 13, 18, 00, 00),
              end: DateTime.new(2015, 10, 15, 15, 00, 00),
-             max_participants: 80)
+             max_participants: 80,
+             active: true)
+
+['registered', 'banned', 'moderator', 'admin'].each do |role|
+  Role.find_or_create_by({name: role})
+end

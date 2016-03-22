@@ -20,6 +20,11 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 gem 'mini_magick'
 
+# QR code generation
+gem 'barby'
+gem 'rqrcode'
+gem 'cairo'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
