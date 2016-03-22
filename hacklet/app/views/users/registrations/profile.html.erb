@@ -81,23 +81,19 @@
             <div class="box-inner">
               <h3>
                 <a class="pull-right size-11 text-warning" href="#">VIEW ALL</a>
-                CHECK-INS
+                ATTENDANCES
               </h3>
               <div class="height-250 slimscroll" data-always-visible="true" data-size="5px" data-position="right" data-opacity="0.4" disable-body-scroll="true">
-                <div class="clearfix margin-bottom-20">
-                  <h4 class="size-15 nomargin noborder nopadding bold"><a href="#">First day</a></h4>
-                  <span class="size-13 text-muted">
-                    HackTUES 3
-                    <span class="text-success size-11">12 minutes ago</span>
-                  </span>
-                </div>
-                <div class="clearfix margin-bottom-20"><!-- discussion item -->
-                  <h4 class="size-15 nomargin noborder nopadding bold"><a href="#">Second day - pizza</a></h4>
-                  <span class="size-13 text-muted">
-                    HackTUES 2
-                    <span class="text-success size-11">3 months ago</span>
-                  </span>
-                </div>
+                <% @user.attendances.reverse.each do |attendance| %>
+                  <div class="clearfix margin-bottom-20">
+                    <h4 class="size-15 nomargin noborder nopadding bold">
+                      <%= link_to attendance.event.title, event_url(attendance.event) %></a>
+                    </h4>
+                    <span class="size-13 text-muted">
+                      <%= time_ago_in_words(attendance.created_at) %> ago
+                    </span>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
