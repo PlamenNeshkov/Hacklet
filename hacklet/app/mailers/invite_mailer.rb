@@ -1,15 +1,14 @@
 class InviteMailer < ApplicationMailer
   default from: 'invites@hacklet.org'
 
-  def send_to_new_user(invite, invite_url)
+  def new(invite, invite_url)
     @invite = invite
     @invite_url = invite_url
-    mail(to: invite.email, subject: 'Invitation')
+    mail to: invite.email, subject: 'New team invitation'
   end
 
-  def send_to_existing_user(invite)
+  def existing(invite)
     @invite = invite
-    # TODO: It should find the user mail by recipient_id provided
-    mail(to: invite.email, subject: 'Invitation')
+    mail to: invite.recipient.email, subject: 'New team invitation'
   end
 end

@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   # Custom
   resources :teams
   resources :events
-  resources :invites
+  get "invites/:id/new", to: "invites#new", as: "new_invite"
+  post "invites/create", to: "invites#create"
 
   # Third party
   mount RailsAdmin::Engine => "/admin", as: "rails_admin"

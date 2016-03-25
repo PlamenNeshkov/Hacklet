@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310195057) do
+ActiveRecord::Schema.define(version: 20160323214656) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -27,9 +27,10 @@ ActiveRecord::Schema.define(version: 20160310195057) do
 
   create_table "invites", force: :cascade do |t|
     t.string   "email"
+    t.string   "token"
     t.integer  "sender_id"
     t.integer  "recipient_id"
-    t.datetime "sent_on"
+    t.integer  "team_id"
     t.boolean  "accepted"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -38,15 +39,26 @@ ActiveRecord::Schema.define(version: 20160310195057) do
   add_index "invites", ["recipient_id"], name: "index_invites_on_recipient_id"
   add_index "invites", ["sender_id"], name: "index_invites_on_sender_id"
 
-  create_table "participants", force: :cascade do |t|
+  create_table "participations", force: :cascade do |t|
     t.integer "user_id"
     t.integer "team_id"
     t.integer "invite_id"
   end
 
-  add_index "participants", ["invite_id"], name: "index_participants_on_invite_id"
-  add_index "participants", ["team_id"], name: "index_participants_on_team_id"
-  add_index "participants", ["user_id"], name: "index_participants_on_user_id"
+  add_index "participations", ["invite_id"], name: "index_participations_on_invite_id"
+  add_index "participations", ["team_id"], name: "index_participations_on_team_id"
+  add_index "participations", ["user_id"], name: "index_participations_on_user_id"
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "repository_url"
+    t.integer  "team_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "projects", ["team_id"], name: "index_projects_on_team_id"
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"

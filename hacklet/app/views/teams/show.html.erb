@@ -1,21 +1,54 @@
-<p id="notice"><%= notice %></p>
+<section class="page-header">
+  <div class="container">
+    <h1><%= @team.name  %></h1>
+    <span><%= @team.event.title %></span>
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><%= link_to 'Teams', teams_path %></li>
+      <li class="active"><%= @team.name %></li>
+    </ol>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row">
+      <% if @team.captain == current_user %>
+        <%= link_to edit_team_path(@team), class: 'btn btn-primary pull-right' do %>
+          <i class="fa fa-cogs"></i> Edit team
+        <% end %>
 
-<p>
-  <strong>Name</strong>
-  <%= @team.name %>
-</p>
+        <%= link_to new_invite_path(@team.id), class: 'btn btn-primary pull-right' do %>
+          <i class="fa fa-user-plus"></i> Invite member
+        <% end %>
+      <% end %>
+    </div>
 
-<p>
-  <strong>Event</strong>
-  <%= @team.event.title %>
-</p>
-
-<p>
-  <strong>Captain</strong>
-  <%= @team.captain.email %>
-</p>
-
-<% if @team.captain == current_user %>
-  <%= link_to 'Edit', edit_team_path(@team) %> |
-<% end %>
-<%= link_to 'Back', teams_path %>
+    <div class="row">
+      <div class="col-md-2">
+        <img src="<%= asset_path 'smarty/demo/people/300x300/8-min.jpg' %>"
+             class="img-responsive" alt="company logo">
+      </div>
+      <div class="col-md-10">
+        <h4 class="margin-bottom-10"><%= @team.captain.email  %></h4>
+        <h6>Captain</h6>
+        <p>Lorem ipsum eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati</p>
+      </div>
+    </div>
+    <hr />
+    <% @team.members.includes(:participations).each_with_index do |member, index| %>
+      <div class="row">
+        <div class="col-md-2">
+          <img src="<%= asset_path 'smarty/demo/people/300x300/8-min.jpg' %>" class="img-responsive" alt="company logo">
+        </div>
+        <div class="col-md-10">
+          <h4 class="margin-bottom-10"><%= member.email  %></h4>
+          <h6>Member</h6>
+          <p>Lorem ipsum eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati</p>
+        </div>
+      </div>
+      <% if index != @team.members.size - 1%>
+        <hr />
+      <% end %>
+    <% end %>
+  </div>
+</section>

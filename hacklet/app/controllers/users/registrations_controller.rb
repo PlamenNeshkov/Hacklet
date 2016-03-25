@@ -12,8 +12,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if @token != nil
       super do
         team = Invite.find_by_token(@token).team
-        @resource.teams.push(team)
-        @resource.save
+        team.members << resource
+        team.save
       end
     else
       super

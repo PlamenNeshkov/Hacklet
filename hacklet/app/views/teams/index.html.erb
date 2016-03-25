@@ -1,29 +1,51 @@
-<p id="notice"><%= notice %></p>
+<section>
+  <div class="container">
+    <div class="row">
+      <%= link_to new_team_path, class: 'btn btn-success' do %>
+        <i class="fa fa-plus"></i> New team
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="clearfix search-result">
+        <table class="table table-striped table-bordered table-hover margin-top30 table-vertical-middle">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Captain</th>
+              <th>Members</th>
+              <th>Project</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @teams.each do |team| %>
+              <tr>
+                <td><%= team.name %></td>
+                <td><%= team.captain.email %></td>
+                <td>4/5</td>
+                <td><%= team.project.name %></td>
+                <td>
+                  <%= link_to team, class: 'btn btn-xs btn-primary' do %>
+                    <span>Show</span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
 
-<h1>Listing Teams</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Captain</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @teams.each do |team| %>
-      <tr>
-        <td><%= team.name %></td>
-        <td><%= team.captain.email %></td>
-        <td><%= link_to 'Show', team %></td>
-        <td><%= link_to 'Edit', edit_team_path(team) %></td>
-        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New team', new_team_path %>
+      <div class="text-center margin-top-20">
+        <ul class="pagination">
+          <li class="disabled"><a href="#">Previous</a></li>
+          <li class="active"><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><a href="#">Next</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

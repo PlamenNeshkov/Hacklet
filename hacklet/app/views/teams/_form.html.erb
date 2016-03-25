@@ -1,26 +1,42 @@
-<%= form_for(@team) do |f| %>
-  <% if @team.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
-
+<%= form_for setup_team(@team), html: {class: 'sky-form boxed'} do |f| %>
+  <header class="size-18 margin-bottom-20">
+    New team
+  </header>
+  <fieldset class="nomargin">
+    <% if @team.errors.any? %>
+      <p><%= pluralize(@team.errors.count, "error") %> occurred:</p>
       <ul>
-      <% @team.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @team.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :event %><br>
-    <%= collection_select(:team, :event_id, Event.all, :id, :title,
-                         prompt: true) %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <% end %>
+    <label class="input margin-bottom-10">
+      <i class="ico-append fa fa-ticket"></i>
+      <%= f.text_field :name, autofocus: true, placeholder: 'Team name', required: true %>
+      <b class="tooltip tooltip-bottom-right">The name of your team, publicly visible</b>
+    </label>
+    <hr />
+    <%= f.fields_for :project do |ff| %>
+      <label class="input margin-bottom-10">
+        <i class="ico-append fa fa-ticket"></i>
+        <%= ff.text_field :name, autofocus: true, placeholder: 'Project name', required: true %>
+        <b class="tooltip tooltip-bottom-right">The name of the project, publicly visible</b>
+      </label>
+      <label class="input margin-bottom-10">
+        <i class="ico-append fa fa-bars"></i>
+        <%= ff.text_field :description, autofocus: true, placeholder: 'Project description', required: true %>
+        <b class="tooltip tooltip-bottom-right">Project description, publicly visible</b>
+      </label>
+    <% end %>
+    <%= f.hidden_field :event_id, :value => @team.event_id %>
+  </fieldset>
+  <footer>
+    <%= link_to teams_path, class: 'btn btn-danger noradius pull-right' do %>
+      <i class="fa fa-ban"></i> Cancel
+    <% end %>
+    <%= f.button type: 'submit', class: 'btn btn-primary noradius pull-right' do %>
+      <i class="fa fa-check"></i> Create
+    <% end %>
+  </footer>
 <% end %>

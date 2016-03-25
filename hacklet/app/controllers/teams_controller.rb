@@ -1,7 +1,6 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_team_and_check_captain, only: [:edit, :update, :destroy]
-  before_action :set_events, only: [:new, :edit]
 
   def index
     @teams = Team.all
@@ -12,7 +11,13 @@ class TeamsController < ApplicationController
   end
 
   def new
-    @team = Team.new
+    event = Event.find_by(active: true)
+    if event == nil
+      # TODO: Flash error "there is no active event"
+    else
+      @team = Team.new
+      @team.event_id = event.id
+    end
   end
 
   def edit
@@ -21,7 +26,6 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     @team.captain = current_user
-
     respond_to do |format|
       if @team.save
         format.html { redirect_to @team,
@@ -67,11 +71,9 @@ class TeamsController < ApplicationController
       end
     end
 
-    def set_events
-      @events = Event.where(active: true).map { |e| [e.title, e.id] }
-    end
-
     def team_params
-      params.require(:team).permit(:name, :event_id)
+      params
+        .require(:team)
+        .permit(:name, :event_id, project_attributes: [:id, :name, :description])
     end
 end

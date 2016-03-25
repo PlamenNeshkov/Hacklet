@@ -1,0 +1,39 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-3 col-md-6 col-sm-6">
+        <%= form_for @invite, url: invites_create_path(@invite), html: { class: 'sky-form boxed' } do |f| %>
+          <% if @invite.errors.any? %>
+            <div id="error_explanation">
+              <h2>
+                <%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being sent:
+              </h2>
+              <ul>
+                <% @invite.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <header class="size-18 margin-bottom-20">
+            New invite
+          </header>
+          <fieldset class="nomargin">
+            <label class="input margin-bottom-10">
+              <i class="ico-append fa fa-envelope"></i>
+              <%= f.email_field :email, autofocus: true, placeholder: 'Email', required: true %>
+              <b class="tooltip tooltip-bottom-right">Accept link will be sent on it</b>
+            </label>
+            <%= f.hidden_field :team_id, :value => @invite.team_id %>
+          </fieldset>
+          <footer>
+            <%= f.button type: 'submit', class: 'btn btn-primary noradius pull-right' do %>
+              <i class="fa fa-check"></i> Send
+            <% end %>
+          </footer>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
