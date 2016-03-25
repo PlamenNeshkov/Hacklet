@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root to: "home#index"
   get "home/index"
 
+  get 'attendances/create/:event_id/:user_id', to: 'attendances#create', as: 'create_attendance'
+  get 'qr/:event_id/:user_id/code', to: 'qr_codes#show', as: 'qr_code'
+
   # Custom
   resources :teams
   resources :events

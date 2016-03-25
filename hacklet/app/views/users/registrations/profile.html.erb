@@ -11,24 +11,24 @@
     </div>
 
     <div class="col-lg-9 col-md-9 col-sm-8">
-      <div class="box-flip box-icon box-icon-center box-icon-round box-icon-large text-center nomargin">
+      <div class="box-icon box-icon-center box-icon-round box-icon-large text-center nomargin">
         <div class="front">
           <div class="box1 noradius">
             <div class="box-icon-title">
               <i class="fa fa-user"></i>
               <h2><%= @user.email %> &ndash; Profile</h2>
             </div>
-            <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere</p>
           </div>
         </div>
 
-        <div class="back">
+        <!-- <div class="back">
           <div class="box2 noradius">
             <h4>WHO AM I?</h4>
             <hr />
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque.</p>
           </div>
-        </div>
+        </div> -->
+        <hr />
       </div>
 
       <div class="box-light">
@@ -81,23 +81,19 @@
             <div class="box-inner">
               <h3>
                 <a class="pull-right size-11 text-warning" href="#">VIEW ALL</a>
-                CHECK-INS
+                ATTENDANCES
               </h3>
               <div class="height-250 slimscroll" data-always-visible="true" data-size="5px" data-position="right" data-opacity="0.4" disable-body-scroll="true">
-                <div class="clearfix margin-bottom-20">
-                  <h4 class="size-15 nomargin noborder nopadding bold"><a href="#">First day</a></h4>
-                  <span class="size-13 text-muted">
-                    HackTUES 3
-                    <span class="text-success size-11">12 minutes ago</span>
-                  </span>
-                </div>
-                <div class="clearfix margin-bottom-20"><!-- discussion item -->
-                  <h4 class="size-15 nomargin noborder nopadding bold"><a href="#">Second day - pizza</a></h4>
-                  <span class="size-13 text-muted">
-                    HackTUES 2
-                    <span class="text-success size-11">3 months ago</span>
-                  </span>
-                </div>
+                <% @user.attendances.reverse.each do |attendance| %>
+                  <div class="clearfix margin-bottom-20">
+                    <h4 class="size-15 nomargin noborder nopadding bold">
+                      <%= link_to attendance.event.title, event_url(attendance.event) %></a>
+                    </h4>
+                    <span class="size-13 text-muted">
+                      <%= time_ago_in_words(attendance.created_at) %> ago
+                    </span>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>

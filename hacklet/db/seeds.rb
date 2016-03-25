@@ -15,8 +15,10 @@ Event.create!(title: "HackTUES 3",
              end: DateTime.new(2016, 6, 29, 15, 00, 00), max_participants: 100,
              active: true)
 
-# Seed users
+# Seed users & roles
 User.delete_all
-User.create(email: "ivo@test.com",
-            password: "testtest",
-            confirmed_at: DateTime.now)
+User.create(email: "ivo@test.com", password: "testtest", confirmed_at: DateTime.now)
+
+['registered', 'banned', 'moderator', 'admin'].each do |role|
+  Role.find_or_create_by({name: role})
+end
