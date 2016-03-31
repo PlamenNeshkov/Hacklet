@@ -33,6 +33,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def profile
+    @teams = Team
+      .includes(:participations)
+      .where('teams.captain_id = ? OR participations.user_id = ?',
+              current_user.id, current_user.id)
+      .references(:participations)
   end
 
   def projects

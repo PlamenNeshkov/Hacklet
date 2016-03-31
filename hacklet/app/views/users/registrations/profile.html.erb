@@ -40,16 +40,13 @@
                 PARTICIPATIONS
               </h3>
               <div class="height-250 slimscroll" data-always-visible="true" data-size="5px" data-position="right" data-opacity="0.4" disable-body-scroll="true">
-                <div class="clearfix margin-bottom-10">
-                  <img class="thumbnail pull-left" src="assets/images/demo/people/300x300/b-min.jpg" width="60" height="60" alt="" />
-                  <h4 class="size-13 nomargin noborder nopadding"><a href="blog-single-default.html">HackTUES 3</a></h4>
-                  <span class="size-11 text-muted">June 29, 2015</span>
-                </div>
-                <div class="clearfix margin-bottom-10">
-                  <img class="thumbnail pull-left" src="assets/images/demo/people/300x300/6-min.jpg" width="60" height="60" alt="" />
-                  <h4 class="size-13 nomargin noborder nopadding"><a href="blog-single-default.html">HackTUES 2</a></h4>
-                  <span class="size-11 text-muted">June 29, 2015</span>
-                </div>
+                <% @teams.each do |team| %>
+                  <div class="clearfix margin-bottom-10">
+                    <%= image_tag team.event.image_url.to_s, class: 'thumbnail pull-left', width: 60, height: 60 if team.event.image_url.present? %>
+                    <h4 class="size-13 nomargin noborder nopadding"><%= link_to team.event.title, team.event %></h4>
+                    <span class="size-11 text-muted"><%= team.event.start.to_formatted_s(:event_date) %> - <%= team.event.end.to_formatted_s(:event_date) %></span>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
@@ -105,14 +102,12 @@
                 TEAMS
               </h3>
               <div class="height-250 slimscroll" data-always-visible="true" data-size="5px" data-position="right" data-opacity="0.4" disable-body-scroll="true">
-                <div class="clearfix margin-bottom-10">
-                  <h4 class="size-13 nomargin noborder nopadding"><a href="blog-single-default.html">Bavnqrite</a></h4>
-                  <span class="size-11 text-muted">HackTUES 3</span>
-                </div>
-                <div class="clearfix margin-bottom-10">
-                  <h4 class="size-13 nomargin noborder nopadding"><a href="blog-single-default.html">Paki Crew</a></h4>
-                  <span class="size-11 text-muted">HackTUES 2</span>
-                </div>
+                <% @teams.each do |team| %>
+                  <div class="clearfix margin-bottom-10">
+                    <h4 class="size-13 nomargin noborder nopadding"><%= link_to team.name, team %></h4>
+                    <span class="size-11 text-muted"><%= team.event.title %></span>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
