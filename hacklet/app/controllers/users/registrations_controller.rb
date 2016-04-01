@@ -43,7 +43,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def projects
   end
 
-  def settings
+  def edit
+    super
+  end
+
+  def avatar
+    @user = current_user
+  end
+
+  def change_avatar
+    respond_to do |format|
+      if current_user.update(account_update_params)
+        format.html { redirect_to profile_path(current_user),
+                      notice: "Your avatar has been changed successfully." }
+      else
+        format.html { render :avatar }
+      end
+    end
   end
 
   protected
@@ -56,6 +72,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
   private
+    # TODO: Override sign_up_params too as custom attributes are implemented
+    def account_update_params
+      params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :about_text, :site_url, :facebook_url, :twitter_url, :avatar)
+    end
+
     def set_user
       @user = User.find(params[:id])
     end

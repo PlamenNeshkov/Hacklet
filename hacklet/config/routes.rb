@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     post "/users/sign_up" => "users/registrations#create"
     get "users/:id/profile", to: "users/registrations#profile", as: "profile"
     get "users/:id/projects", to: "users/registrations#projects", as: "user_projects"
-    get "users/:id/settings", to: "users/registrations#settings", as: "user_settings"
+    get "users/:id/settings", to: "users/registrations#edit", as: "user_settings"
+    get "users/:id/avatar", to: "users/registrations#avatar", as: "user_avatar"
+    post "/users/:id/change_avatar", to: "users/registrations#change_avatar", as: "change_avatar"
   end
 end

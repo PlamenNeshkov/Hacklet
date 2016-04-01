@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :sent_invites, :class_name => 'Invite', :foreign_key => 'sender_id'
   has_many :attendances
 
+  mount_uploader :avatar, AvatarUploader
   devise :database_authenticatable, :registerable, :recoverable,
     :rememberable, :trackable, :validatable, :confirmable,
     :lockable, :timeoutable

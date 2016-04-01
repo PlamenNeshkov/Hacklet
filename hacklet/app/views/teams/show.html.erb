@@ -25,25 +25,28 @@
 
     <div class="row">
       <div class="col-md-2">
-        <img src="<%= asset_path 'smarty/demo/people/300x300/8-min.jpg' %>"
-             class="img-responsive" alt="company logo">
+        <%= image_tag @team.captain.avatar_url.to_s, class: 'img-responsive', alt: 'Captain avatar' %>
       </div>
       <div class="col-md-10">
         <h4 class="margin-bottom-10"><%= @team.captain.email  %></h4>
         <h6>Captain</h6>
-        <p>Lorem ipsum eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati</p>
+        <% if @team.captain.about_text? %>
+          <p><%= @team.captain.about_text %>
+        <% end %>
       </div>
     </div>
     <hr />
     <% @team.members.includes(:participations).each_with_index do |member, index| %>
       <div class="row">
         <div class="col-md-2">
-          <img src="<%= asset_path 'smarty/demo/people/300x300/8-min.jpg' %>" class="img-responsive" alt="company logo">
+          <%= image_tag member.avatar_url.to_s, class: 'img-responsive', alt: 'Team member avatar' %>
         </div>
         <div class="col-md-10">
           <h4 class="margin-bottom-10"><%= member.email  %></h4>
           <h6>Member</h6>
-          <p>Lorem ipsum eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati</p>
+          <% if member.about_text? %>
+            <p><%= member.about_text %>
+          <% end %>
         </div>
       </div>
       <% if index != @team.members.size - 1%>

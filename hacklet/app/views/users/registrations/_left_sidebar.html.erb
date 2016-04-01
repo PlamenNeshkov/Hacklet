@@ -1,27 +1,35 @@
 <div class="thumbnail text-center">
-  <img class="img-responsive"
-       src="<%= asset_path 'smarty/demo/people/460x700/8-min.jpg' %>"
-       alt="" />
-       <h2 class="size-18 margin-top-10 margin-bottom-0"><%= @user.email %></h2>
-       <h3 class="size-11 margin-top-0 margin-bottom-10 text-muted">Participant</h3>
+  <%= image_tag @user.avatar_url.to_s, class: 'img-responsive', alt: 'Avatar' %>
+  <h2 class="size-18 margin-top-10 margin-bottom-0"><%= @user.email %></h2>
+  <h3 class="size-11 margin-top-0 margin-bottom-10 text-muted">Participant</h3>
 </div>
 
 <ul class="side-nav list-group margin-bottom-60" id="sidebar-nav">
   <li class="list-group-item <%= action_name == 'profile' ? 'active' : '' %>">
     <%= link_to profile_path(@user) do %>
-      <i class="fa fa-eye"></i> PROFILE
+      <i class="fa fa-eye"></i> Profile
     <% end %>
   </li>
   <li class="list-group-item <%= action_name == 'projects' ? 'active' : '' %>">
     <%= link_to user_projects_path(@user) do %>
-      <i class="fa fa-tasks"></i> PROJECTS
+      <i class="fa fa-tasks"></i> Projects
     <% end %>
   </li>
   <% if @user == current_user %>
-    <li class="list-group-item <%= action_name == 'settings' ? 'active' : '' %>">
-      <%= link_to user_settings_path(@user) do %>
-        <i class="fa fa-gears"></i> SETTINGS
-      <% end %>
+    <li class="list-group-item list-toggle">
+      <a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-1"><i class="fa fa-gears"></i> Settings</a>
+        <ul id="collapse-1" class="collapse">
+            <li class="<%= action_name == 'edit' ? 'active' : '' %>">
+              <%= link_to user_settings_path(@user) do %>
+                <i class="fa fa-angle-right"></i> General
+              <% end %>
+            </li>
+            <li class="<%= action_name == 'avatar' ? 'active' : '' %>">
+              <%= link_to user_avatar_path(@user) do %>
+                <i class="fa fa-angle-right"></i> Change avatar
+              <% end %>
+            </li>
+        </ul>
     </li>
   <% end %>
 </ul>
@@ -51,11 +59,28 @@
 
   <div class="text-muted">
     <h2 class="size-18 text-muted margin-bottom-6"><b>About</b></h2>
-    <p>I'm a funny one m8.</p>
+    <% if @user.about_text? %>
+      <%= @user.about_text %>
+    <% else %>
+      <% if @user == current_user %>
+        Go to <%= link_to 'Settings', user_settings_path(current_user) %> to add a short description of you.
+      <% end %>
+    <% end %>
+    <br />
+    <br />
     <ul class="list-unstyled nomargin">
-      <li class="margin-bottom-10"><i class="fa fa-globe width-20 hidden-xs hidden-sm"></i> <a href="http://www.example.com">www.example.com</a></li>
-      <li class="margin-bottom-10"><i class="fa fa-facebook width-20 hidden-xs hidden-sm"></i> <a href="http://www.facebook.com/example">example</a></li>
-      <li class="margin-bottom-10"><i class="fa fa-twitter width-20 hidden-xs hidden-sm"></i> <a href="http://www.twitter.com/example">@example</a></li>
+      <% if @user.site_url? %>
+        <li class="margin-bottom-10"><i class="fa fa-globe width-20 hidden-xs hidden-sm"></i> <a href="<%= @user.site_url %>">Personal site</a></li>
+      <% end %>
+      <% if @user.facebook_url? %>
+        <li class="margin-bottom-10"><i class="fa fa-facebook width-20 hidden-xs hidden-sm"></i> <a href="<%= @user.facebook_url %>">Facebook</a></li>
+      <% end %>
+      <% if @user.twitter_url? %>
+        <li class="margin-bottom-10"><i class="fa fa-twitter width-20 hidden-xs hidden-sm"></i> <a href="<%= @user.twitter_url %>">Twitter</a></li>
+      <% end %>
+      <% if !@user.site_url? && !@user.facebook_url? && !@user.twitter_url %>
+        Go to <%= link_to 'Settings', user_settings_path(current_user) %> to add social links.
+      <% end %>
     </ul>
   </div>
 </div>

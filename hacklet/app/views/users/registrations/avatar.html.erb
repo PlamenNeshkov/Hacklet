@@ -1,0 +1,54 @@
+<%= render 'breadcrumbs' %>
+
+<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+<% end %>
+
+<section>
+  <div class="container">
+    <div class="col-lg-9 col-md-9 col-sm-8 col-lg-push-3 col-md-push-3 col-sm-push-4 margin-bottom-80">
+      <ul class="nav nav-tabs nav-top-border">
+        <li>
+          <%= link_to 'General', user_settings_path(current_user) %>
+        </li>
+        <li class="active">
+          <%= link_to 'Avatar', user_avatar_path(current_user) %>
+        </li>
+      </ul>
+      <div class="tab-content margin-top-20">
+        <div class="tab-pane fade in active" id="info">
+          <%= form_for @user, url: change_avatar_path, class: 'clearfix', method: :post, html: { multipart: true } do |f| %>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-3 col-sm-4">
+                  <div class="thumbnail">
+                    <%= f.hidden_field :avatar_cache %>
+                    <%= image_tag @user.avatar_url, class: 'img-responsive', alt: 'Current avatar' if @user.avatar? %>
+                  </div>
+                </div>
+                <div class="col-md-9 col-sm-8">
+                  <div class="sky-form nomargin">
+                    <label class="label">Select file</label>
+                    <label for="file" class="input input-file">
+                      <div class="button">
+                        <%= f.file_field :avatar, { id: 'file', onchange: 'this.parentNode.nextSibling.value = this.value' } %> Browse
+                      </div><input type="text" readonly>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="margin-top10">
+              <%= f.button class: 'btn btn-primary', type: 'submit' do %>
+                <i class="fa fa-check"></i> Save changes
+              <% end %>
+              <%= link_to "Back", :back, class: 'btn btn-default' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-4 col-lg-pull-9 col-md-pull-9 col-sm-pull-8">
+      <%= render 'left_sidebar' %>
+    </div>
+</section>
