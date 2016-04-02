@@ -1,0 +1,12 @@
+<%= content_tag :div, class: "blog-post-item" do %>
+  <%= render "blogit/posts/post_head", post: post %>
+  <%= render "blogit/posts/blogger_information", post: post %>
+
+  <p>
+    <%= format_content(post.short_body) %>
+  </p>
+  <a href="blog-single-default.html" class="btn btn-reveal btn-default">
+    <i class="fa fa-plus"></i>
+    <span>Read More</span>
+  </a>
+<% end %>

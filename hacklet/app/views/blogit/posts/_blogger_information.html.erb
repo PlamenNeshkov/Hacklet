@@ -1,0 +1,35 @@
+<ul class="blog-post-info list-inline">
+  <li>
+    <a href="#">
+      <i class="fa fa-clock-o"></i> 
+      <span class="font-lato">
+        <%= time_tag post.created_at, pubdate: true, format: blogit_conf.datetime_format %>
+      </span>
+    </a>
+  </li>
+  <li>
+    <%= link_to post_path(post, anchor: "comments") do %>
+      <i class="fa fa-comment-o"></i>
+      <span class="font-lato">
+        <%#= t :comments_count, scope: 'blogit.posts', count: post.comments_count %>
+        <%= post.comments_count %> comments
+      </span>
+    <% end %>
+  </li>
+  <% if post.tag_list.count > 0 %>
+    <li>
+      <i class="fa fa-folder-open-o"></i>
+      <% post.tag_list.each do |tag| %>
+        <%= link_to tagged_blog_posts_path(tag), class: "category" do %>
+          <span class="font-lato"><%= tag %></span>
+        <% end %>
+      <% end %>
+    </li>
+  <% end %>
+  <li>
+    <a href="#">
+      <i class="fa fa-user"></i>
+      <span class="font-lato"><%= post.blogger_display_name %></span>
+    </a>
+  </li>
+</ul>

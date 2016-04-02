@@ -1,0 +1,28 @@
+<section class="page-header dark page-header-xs">
+  <div class="container">
+    <h1>BLOG</h1>
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li class="<%= 'active' if params[:tag] == nil %>"><a href="/blog">Blog</a></li>
+      <% if params[:tag] %>
+        <li class="active"><%= params[:tag] %></li>
+      <% end %>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <% if @posts.any? %>
+      <%= render partial: "blogit/posts/post",
+        collection: @posts,
+        locals: {
+          show_comments_count: (Blogit.configuration.include_comments == :active_records) 
+        }  %>
+    <% else %>
+      No posts so far, check again later :)
+    <% end %>
+
+    <%= paginate(@posts) %>
+  </div>
+</section>
