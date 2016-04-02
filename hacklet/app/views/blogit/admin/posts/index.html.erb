@@ -1,0 +1,23 @@
+<h2><%= t(:your_blog_posts, scope: "blogit.admin") %></h2>
+
+<% if @posts.any? %>
+  <%= render partial: "blogit/admin/posts/post",
+    collection: @posts,
+    spacer_template: "blog_post_spacer" %>
+
+<% else %>
+
+  <%= render partial: "blogit/posts/empty" %>
+
+<% end %>
+
+<%= render "pagination" %>
+
+<%= content_for(:aside) do %>
+
+  <h2><%= t(:latest_comments, scope: "blogit.admin") %></h2>
+  
+  <%= render(partial: 'blogit/admin/comments/comment', collection: @latest_comments) or
+    muted_text(t(:no_comments_to_show, scope: "blogit.admin")) %>
+    
+<% end %>

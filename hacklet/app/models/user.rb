@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :attendances
 
   mount_uploader :avatar, AvatarUploader
+  blogs
   devise :database_authenticatable, :registerable, :recoverable,
     :rememberable, :trackable, :validatable, :confirmable,
     :lockable, :timeoutable

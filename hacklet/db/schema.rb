@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401192146) do
+ActiveRecord::Schema.define(version: 20160402093250) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,6 +22,33 @@ ActiveRecord::Schema.define(version: 20160401192146) do
 
   add_index "attendances", ["event_id"], name: "index_attendances_on_event_id"
   add_index "attendances", ["user_id"], name: "index_attendances_on_user_id"
+
+  create_table "blogit_comments", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "email",      null: false
+    t.string   "website"
+    t.text     "body",       null: false
+    t.integer  "post_id",    null: false
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "blogit_comments", ["post_id"], name: "index_blogit_comments_on_post_id"
+
+  create_table "blogit_posts", force: :cascade do |t|
+    t.string   "title",                            null: false
+    t.text     "body",                             null: false
+    t.string   "state",          default: "draft", null: false
+    t.integer  "comments_count", default: 0,       null: false
+    t.integer  "blogger_id"
+    t.string   "blogger_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
+  end
+
+  add_index "blogit_posts", ["blogger_type", "blogger_id"], name: "index_blogit_posts_on_blogger_type_and_blogger_id"
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -75,6 +102,26 @@ ActiveRecord::Schema.define(version: 20160401192146) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", force: :cascade do |t|
+    t.string  "name"
+    t.integer "taggings_count", default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"

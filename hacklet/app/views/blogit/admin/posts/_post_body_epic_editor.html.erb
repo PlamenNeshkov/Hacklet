@@ -1,0 +1,18 @@
+<%= f.field do %>
+
+  <%= f.label :body, t(:post_body, scope: 'blogit.admin.posts') %>
+  
+  <%= f.text_area :body, class: "is_epic_editor",
+    placeholder: t(:write_something_here, scope: 'blogit.admin.posts') %>
+  
+  <!-- This DIV is used by epiceditor as the text area -->
+  <div id="epiceditor"></div>
+    
+  <%= muted_text do %>
+    <small class="blog_post_tip">
+      <%= t :tip_you_can_style_your_post_using, \
+        scope: 'blogit.admin.posts', parser: blogit_conf.default_parser %>
+    </small>
+  <% end %>
+  
+<% end %>

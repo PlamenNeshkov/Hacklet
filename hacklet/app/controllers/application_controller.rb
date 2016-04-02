@@ -14,4 +14,28 @@ class ApplicationController < ActionController::Base
       redirect_to '/'
     end
   end
+
+  # Checks that the current user has permission to access the current action.
+  #   This method may redirect if you prefer.
+  #
+  # Returns true if the user (Blogger) is permitted
+  # Returns false if the user (Blogger) is not permitted
+  def authenticate_blogger
+    #current_user.admin?
+    true
+  end
+
+  # The sign out URL to leave the admin dashboard
+  #
+  # Returns a String with a URL path that your application must recognised with a DELETE HTTP request
+  def blogit_admin_sign_out_url
+    destroy_user_session_url
+  end
+
+  # The currently signed in Blogger.
+  # Must be an instance of an ActiveRecord::Base model that blogs
+  # Returns an ActiveRecord::Base subclass instance
+  def current_blogger
+    current_user
+  end
 end

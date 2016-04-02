@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post "invites/create", to: "invites#create"
 
   # Third party
+  mount Blogit::Engine => "/blog"
+  mount Blogit::Admin::Engine => "/blog/admin"
   mount RailsAdmin::Engine => "/admin", as: "rails_admin"
   devise_for :users, :controllers => {:registrations => "users/registrations"}
 

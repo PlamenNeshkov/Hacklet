@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+    <%= stylesheet_link_tag :admin %>
+    <meta name="description" content="<%= description %>">
+    <meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    
+    <%= javascript_include_tag :admin %>
+    
+    
+    <%= csrf_meta_tags %>
+  </head>
+  
+  <body class="blogit_admin">
+    
+    <header class="blogit_admin_header">
+      <div class="blogit_admin_header-inner">
+      
+        <nav class="blogit_admin_header_nav">
+          <%= link_to t(:new_blog_post, scope: 'blogit.admin.posts'), 
+            new_post_path, class: "blogit_admin_header_nav-link" %>
+          
+          <%= link_to t(:sign_out, scope: 'blogit.admin.sessions'),
+            main_app.destroy_user_session_url,
+            class: "blogit_admin_header_nav-link" %>
+        </nav>
+      
+        <h1 class="blogit_admin_header-text">
+          <%= link_to(t(:blog_admin, scope: 'blogit.admin'), root_path) %>
+        </h1>
+        
+      </div>
+    </header>
+    
+    <div class="blogit_admin-content_wrapper">      
+      <div class="blogit_admin-content">
+        <main class="blogit_admin_posts_list">
+          <%= yield %>
+        </main>
+        
+        <aside class="blogit_admin_comments_list">
+          <%= yield(:aside) %>
+        </aside>
+        
+        <br class="clearfix">
+      </div>
+    </div>
+    
+    <footer class="blogit_admin-footer">
+      <%= link_to("Blogit", "http://blogit.katanacode.com", target: "_blank") %> was
+      created by your pals at 
+      <%= link_to('Katana Code', "http://facebook.com/katanacode", target: "_blank") %>
+       :o)
+    </footer>
+    
+  </body>
+</html>
