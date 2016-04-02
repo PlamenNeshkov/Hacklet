@@ -5,8 +5,9 @@
   <p>
     <%= format_content(post.short_body) %>
   </p>
-  <a href="blog-single-default.html" class="btn btn-reveal btn-default">
+
+  <%= link_to post, class: 'btn btn-reveal btn-default' do %>
     <i class="fa fa-plus"></i>
     <span>Read More</span>
-  </a>
+  <% end %>
 <% end %>

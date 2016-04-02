@@ -50,5 +50,7 @@ Devise.setup do |config|
   config.navigational_formats = ['*/*', :html]
   config.sign_out_via = :get
 
-  config.secret_key = ENV['DEVISE_SECRET_KEY']
+  if Rails.env == 'production'
+    config.secret_key = ENV['DEVISE_SECRET_KEY']
+  end
 end

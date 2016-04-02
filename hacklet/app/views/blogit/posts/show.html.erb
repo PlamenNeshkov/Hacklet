@@ -1,28 +1,176 @@
-<% title @post.title %>
-<% description @post.description.to_s %>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 col-sm-9">
+        <h1 class="blog-post-title"><%= @post.title %></h1>
+        <%= render "blogit/posts/blogger_information", post: @post %>
 
-<%= content_tag(:article, id: "blogit_post_#{@post.id}", class: "blogit_post") do %>
+        <p class="dropcap">
+          <%= format_content(@post.body) %>
+        </p>
 
-  
-  <%# Render the header for this blog post %>
-  <%= render "blogit/posts/post_head", post: @post %>
+        <div class="divider divider-dotted"></div>
 
-  <%= render "blogit/posts/blogger_information", post: @post %>
+        <% @post.tag_list.each do |tag| %>
+          <%= link_to tagged_blog_posts_path(tag), class: "tag" do %>
+            <span class="txt"><%= tag %></span>
+            <span class="num">12</span>
+          <% end %>
+        <% end %>
 
-  <%# Render the body of this blog post (as Markdown) %>
-  <%= format_content(@post.body) %>
+        <div class="clearfix margin-top-30">
+          <span class="pull-left margin-top-6 bold hidden-xs">
+            Share post:
+          </span>
 
-  <%# Render info about the person who wrote this post %>
-  <%= share_bar_for_post @post %>
+          <a href="#" class="social-icon social-icon-sm social-icon-transparent social-facebook pull-right" data-toggle="tooltip" data-placement="top" title="Facebook">
+            <i class="icon-facebook"></i>
+            <i class="icon-facebook"></i>
+          </a>
 
-  <%# Render the no. of comments %>
-  <%= render "blogit/posts/comments_count",
-    post: post if defined?(show_comments_count) and show_comments_count %>
+          <a href="#" class="social-icon social-icon-sm social-icon-transparent social-twitter pull-right" data-toggle="tooltip" data-placement="top" title="Twitter">
+            <i class="icon-twitter"></i>
+            <i class="icon-twitter"></i>
+          </a>
 
-  <%= render "blogit/posts/tags", post: @post %>
-  <%= render "blogit/posts/related", post: @post %>
+          <a href="#" class="social-icon social-icon-sm social-icon-transparent social-gplus pull-right" data-toggle="tooltip" data-placement="top" title="Google plus">
+            <i class="icon-gplus"></i>
+            <i class="icon-gplus"></i>
+          </a>
+        </div>
 
-  <%= comments_for_post @post %>
+        <div class="divider"></div>
 
-<% end %>
+        <ul class="pager">
+          <li class="previous">
+            <%# TODO: Extract to controller and check for nil (first post) %>
+            <%= link_to post_path(Blogit::Post.find_by(id: @post.id - 1)), class: 'noborder' do %>
+              &larr; Previous post
+            <% end %>
+          </li>
+          <li class="next">
+            <%# TODO: Extract and check for nil (no next post) %>
+            <%= link_to post_path(Blogit::Post.find_by(id: @post.id + 1)), class: 'noborder' do %>
+              &rarr; Next post
+            <% end %>
+          </li>
+        </ul>
 
+
+        <div class="divider"></div>
+
+        <div id="comments" class="comments">
+          <h4 class="page-header margin-bottom-60 size-20">
+            <span>3</span> COMMENTS
+          </h4>
+          <div class="comment-item">
+            <span class="user-avatar">
+              <img class="pull-left media-object" src="assets/images/avatar.png" width="64" height="64" alt="">
+            </span>
+
+            <div class="media-body">
+              <a href="#commentForm" class="scrollTo comment-reply">reply</a>
+              <h4 class="media-heading bold">John Doe</h4>
+              <small class="block">June 29, 2014 - 11:23</small>
+              Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            </div>
+          </div>
+
+          <h4 class="page-header size-20 margin-bottom-60 margin-top-100">
+            LEAVE A <span>COMMENT</span>
+          </h4>
+
+          <form action="#" method="post">
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-4">
+                  <label>NAME</label>
+                  <input required="required" type="text" value="" maxlength="100" class="form-control input-lg" name="author" id="author">
+                </div>
+                <div class="col-md-4">
+                  <label>EMAIL</label>
+                  <input required="required" type="email" value="" maxlength="100" class="form-control input-lg" name="contact_email" id="contact_email">
+                </div>
+                <div class="col-md-4">
+                  <label>WEBSITE</label>
+                  <input type="email" value="" maxlength="100" class="form-control input-lg" name="url" id="url">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label>COMMENT</label>
+                  <textarea required="required" maxlength="5000" rows="5" class="form-control" name="comment" id="comment"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <button class="btn btn-3d btn-lg btn-reveal btn-black">
+                  <i class="fa fa-check"></i>
+                  <span>SUBMIT MESSAGE</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-3">
+        <div class="tabs nomargin-top hidden-xs margin-bottom-60">
+          <ul class="nav nav-tabs nav-bottom-border nav-justified">
+            <li class="active">
+              <a href="#tab_1" data-toggle="tab">
+                Related
+              </a>
+            </li>
+            <li>
+              <a href="#tab_2" data-toggle="tab">
+                Recent
+              </a>
+            </li>
+          </ul>
+
+          <div class="tab-content margin-bottom-60 margin-top-30">
+            <div id="tab_1" class="tab-pane active">
+              <% related_posts_for_post(@post).each do |related_post| %>
+                <div class="row tab-post">
+                  <div class="col-md-9 col-sm-9 col-xs-9">
+                    <%= link_to related_post.title, post_path(related_post),
+                      class: 'tab-post-link' %>
+                    <small>June 29 2014</small>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+            <div id="tab_2" class="tab-pane">
+              <div class="row tab-post">
+                <div class="col-md-9 col-sm-9 col-xs-9">
+                  <a href="blog-sidebar-left.html" class="tab-post-link">Curabitur pellentesque neque eget diam</a>
+                  <small>June 29 2014</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="hidden-xs size-16 margin-bottom-20">TAGS</h3>
+        <div class="hidden-xs margin-bottom-60">
+          <% @post.tag_list.each do |tag| %>
+            <%= link_to tagged_blog_posts_path(tag), class: "tag" do %>
+              <span class="txt"><%= tag %></span>
+              <span class="num">12</span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= share_bar_for_post @post %>
+<%= comments_for_post @post %>
