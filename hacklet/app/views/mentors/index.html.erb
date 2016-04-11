@@ -1,0 +1,62 @@
+<div class="callout callout-theme-color">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <h3>Want to be a mentor?</h3>
+        <p>If so, click to join now!</p>
+      </div>
+      <div class="col-md-3">
+        <%= link_to 'Apply for mentorship', new_mentor_url, class: 'btn btn-primary btn-lg' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <p class="lead">Lorem ipsum dolor sit amet. Etharums your template rerum facilis dolores nemis omnis fugats vitaes you need this.</p>
+    <p>Lorem ipsum dolor sit amet. Etharums your template rerum facilis dolores nemis omnis fugats vitaes you need this totam rem aperiam, eaque ipsa qu ab illo inventore veritatis et quasi architectos beatae vitae dicta sunt explicabo. Nemo enim sadips ipsums dolores sit.Nemo enims sadips ipsums un inventore veritatis et quasi.</p>
+    <div class="row">
+      <% @mentors.each do |mentor| %>
+        <% if mentor.approved? %>
+        <div class="col-md-3 col-sm-6">
+          <div class="box-flip box-color box-icon box-icon-center box-icon-round box-icon-large text-center">
+            <div class="front">
+              <div class="box1 box-default">
+                <div class="box-icon-title">
+                  <%= image_tag mentor.user.avatar, class: 'img-responsive' %>
+                  <h2>Ivan Ivanov</h2>
+                  <small><%= mentor.user.email %></small>
+                </div>
+              </div>
+            </div>
+
+            <div class="back">
+              <div class="box2 box-default">
+                <h4 class="nomargin">Ivan Ivanov</h4>
+                <small><%= mentor.user.email %></small>
+                <hr />
+                <p><%= mentor.user.about_text %></p>
+                <hr />
+                <a href="#" class="social-icon social-icon-sm social-facebook">
+                  <i class="fa fa-facebook"></i>
+                  <i class="fa fa-facebook"></i>
+                </a>
+                <a href="#" class="social-icon social-icon-sm social-twitter">
+                  <i class="fa fa-twitter"></i>
+                  <i class="fa fa-twitter"></i>
+                </a>
+                <a href="#" class="social-icon social-icon-sm social-linkedin">
+                  <i class="fa fa-linkedin"></i>
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+</section>
