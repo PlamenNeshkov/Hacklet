@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
   before_action :set_team_and_check_captain, only: [:edit, :update, :destroy]
 
   def index
-    @teams = Team.all
+    @teams = Team.order(created_at: :desc).page(params[:page])
   end
 
   def show

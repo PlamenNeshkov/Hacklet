@@ -26,9 +26,12 @@ gem 'rqrcode'
 gem 'cairo'
 
 # Blog system
-gem "blogit"
-gem "blogit-admin"
-gem "acts-as-taggable-on"
+gem 'blogit'
+gem 'blogit-admin'
+gem 'acts-as-taggable-on'
+
+# Utilities
+gem 'kaminari'
 
 group :development, :test do
   gem 'sqlite3'

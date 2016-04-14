@@ -286,6 +286,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   mini_magick
   mysql2
   puma
