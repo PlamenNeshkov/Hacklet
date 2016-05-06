@@ -15,6 +15,8 @@
 //= require form.validate/jquery.validation.min
 //= require widget.twittie/twittie.min
 //= require bootstrap-tokenfield
+//= require froala_editor.min
 //= require twitter/typeahead.min
+//= require icheck
 //= require_tree
 //= require_self

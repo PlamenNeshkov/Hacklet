@@ -11,6 +11,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Admin
 gem 'rails_admin'
+gem 'rails_admin_rollincode', :git => 'git://github.com/rollincode/rails_admin_theme.git'
+gem 'wysiwyg-rails'
+gem 'icheck-rails'
 
 # Authorization and authentication
 gem 'devise'
