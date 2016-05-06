@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # Custom
   resources :teams
   resources :events
+  resources :mentors
 
   get "invites/:id/new", to: "invites#new", as: "new_invite"
   post "invites/create", to: "invites#create"
