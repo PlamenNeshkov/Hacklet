@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402093250) do
+ActiveRecord::Schema.define(version: 20160506193829) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "user_id"
@@ -63,17 +63,12 @@ ActiveRecord::Schema.define(version: 20160402093250) do
   end
 
   create_table "invites", force: :cascade do |t|
-    t.string   "email"
-    t.string   "token"
     t.integer  "sender_id"
-    t.integer  "recipient_id"
     t.integer  "team_id"
-    t.boolean  "accepted"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "invites", ["recipient_id"], name: "index_invites_on_recipient_id"
   add_index "invites", ["sender_id"], name: "index_invites_on_sender_id"
 
   create_table "participations", force: :cascade do |t|
@@ -96,6 +91,16 @@ ActiveRecord::Schema.define(version: 20160402093250) do
   end
 
   add_index "projects", ["team_id"], name: "index_projects_on_team_id"
+
+  create_table "recipients", force: :cascade do |t|
+    t.string   "email"
+    t.string   "token"
+    t.boolean  "accepted"
+    t.integer  "invite_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
