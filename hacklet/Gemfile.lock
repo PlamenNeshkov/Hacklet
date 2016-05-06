@@ -57,6 +57,7 @@ GEM
     blogit-admin (0.0.1)
       blogit (>= 1.1.1)
       epic-editor-rails
+    bootstrap_tokenfield_rails (0.12.1)
     builder (3.2.2)
     byebug (8.2.2)
     cairo (1.14.3)
@@ -251,6 +252,10 @@ GEM
     tilt (2.0.2)
     turbolinks (2.5.3)
       coffee-rails
+    twitter-typeahead-rails (0.11.1)
+      actionpack (>= 3.1)
+      jquery-rails
+      railties (>= 3.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
@@ -273,6 +278,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   blogit
   blogit-admin
+  bootstrap_tokenfield_rails
   byebug
   cairo
   capistrano
@@ -301,6 +307,7 @@ DEPENDENCIES
   spring
   sqlite3
   turbolinks
+  twitter-typeahead-rails
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 

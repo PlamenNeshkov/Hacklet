@@ -14,4 +14,7 @@
 //= require form.validate/jquery.form.min
 //= require form.validate/jquery.validation.min
 //= require widget.twittie/twittie.min
+//= require bootstrap-tokenfield
+//= require twitter/typeahead.min
+//= require_tree
 //= require_self

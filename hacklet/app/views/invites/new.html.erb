@@ -1,38 +1,91 @@
+<section class="page-header page-header-xs dark">
+  <div class="container">
+    <h1>INVITE</h1>
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Teams</a></li>
+      <li class="active">New invite</li>
+    </ol>
+
+    <ul class="page-header-tabs list-inline">
+      <li class="active"><a href="#registered" data-toggle="tab">Registered members</a></li>
+      <li><a href="#new" data-toggle="tab">New members</a></li>
+    </ul>
+  </div>
+</section>
+
 <section>
   <div class="container">
-    <div class="row">
-      <div class="col-md-offset-3 col-md-6 col-sm-6">
-        <%= form_for @invite, url: invites_create_path(@invite), html: { class: 'sky-form boxed' } do |f| %>
-          <% if @invite.errors.any? %>
-            <div id="error_explanation">
-              <h2>
-                <%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being sent:
-              </h2>
-              <ul>
-                <% @invite.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
+    <div class="tab-content">
+      <div class="tab-pane fade in active" id="registered">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+            <%= form_for @invite, url: invites_create_path(@invite), html: {
+                class: 'sky-form boxed' } do |f| %>
+              <% if @invite.errors.any? %>
+                <div id="error_explanation">
+                  <h2>
+                    <%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being sent:
+                  </h2>
+                  <ul>
+                    <% @invite.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
 
-          <header class="size-18 margin-bottom-20">
-            New invite
-          </header>
-          <fieldset class="nomargin">
-            <label class="input margin-bottom-10">
-              <i class="ico-append fa fa-envelope"></i>
-              <%= f.email_field :email, autofocus: true, placeholder: 'Email', required: true %>
-              <b class="tooltip tooltip-bottom-right">Accept link will be sent on it</b>
-            </label>
-            <%= f.hidden_field :team_id, :value => @invite.team_id %>
-          </fieldset>
-          <footer>
-            <%= f.button type: 'submit', class: 'btn btn-primary noradius pull-right' do %>
-              <i class="fa fa-check"></i> Send
+              <header class="size-18 margin-bottom-20">
+                Invite registered members
+              </header>
+              <fieldset class="nomargin">
+                <%= text_field_tag "#{f.object_name}[reg_recipients]", nil, id: 'reg-recipients-selection', autofocus: true, placeholder: 'Type to search users', required: true %>
+                <%= f.hidden_field :team_id, :value => @invite.team_id %>
+              </fieldset>
+              <footer>
+                <%= f.button type: 'submit', class: 'btn btn-primary noradius pull-right' do %>
+                  <i class="fa fa-check"></i> Send
+                <% end %>
+              </footer>
             <% end %>
-          </footer>
-        <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="new">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+            <%= form_for @invite, url: invites_create_path(@invite), html: {
+                class: 'sky-form boxed' } do |f| %>
+              <% if @invite.errors.any? %>
+                <div id="error_explanation">
+                  <h2>
+                    <%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being sent:
+                  </h2>
+                  <ul>
+                    <% @invite.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <header class="size-18 margin-bottom-20">
+                Invite new members (will have to register before accepting)
+              </header>
+              <fieldset class="nomargin">
+                <%= text_field_tag "#{f.object_name}[new_recipients]", nil, id: 'new-recipients-selection', autofocus: true, placeholder: "Enter your friend's emails", required: true %>
+                <%= f.hidden_field :team_id, :value => @invite.team_id %>
+              </fieldset>
+
+              <footer>
+                <%= f.button type: 'submit', class: 'btn btn-primary noradius pull-right' do %>
+                  <i class="fa fa-check"></i> Send
+                <% end %>
+              </footer>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

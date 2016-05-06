@@ -33,6 +33,10 @@ gem 'acts-as-taggable-on'
 # Utilities
 gem 'kaminari'
 
+# JavaScript front-end libs
+gem 'bootstrap_tokenfield_rails'
+gem 'twitter-typeahead-rails'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'

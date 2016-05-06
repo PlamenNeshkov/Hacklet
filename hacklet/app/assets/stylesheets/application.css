@@ -8,6 +8,7 @@
  *= require owl-carousel/owl.pack.css
  *= require owl-carousel/owl.theme.css
  *= require owl-carousel/owl.transitions.css
+ *= require bootstrap-tokenfield
  *= require_tree .
  *= require_self
  */
