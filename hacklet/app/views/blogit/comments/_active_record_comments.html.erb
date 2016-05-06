@@ -1,5 +1,20 @@
-<div class="blogit_comments_list">
-  <h3 class="blogit_comments_list__header blogit_header--section">Comments</h3>
+<div id="comments" class="comments">
+  <h4 class="page-header margin-bottom-60 size-20">
+    <span>3</span> COMMENTS
+  </h4>
   <%= render post.comments %>
+  <div class="comment-item">
+    <span class="user-avatar">
+      <img class="pull-left media-object" src="assets/images/avatar.png" width="64" height="64" alt="">
+    </span>
+
+    <div class="media-body">
+      <a href="#commentForm" class="scrollTo comment-reply">reply</a>
+      <h4 class="media-heading bold">John Doe</h4>
+      <small class="block">June 29, 2014 - 11:23</small>
+      Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    </div>
+  </div>
+
+  <%= render partial: "blogit/comments/form", locals: { post: post, comment: comment } %>
 </div>
-<%= render partial: "blogit/comments/form", locals: { post: post, comment: comment } %>

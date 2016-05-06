@@ -8,7 +8,7 @@
     </a>
   </li>
   <li>
-    <%= link_to post_path(post, anchor: "comments") do %>
+    <%= link_to blog.post_path(post, anchor: "comments") do %>
       <i class="fa fa-comment-o"></i>
       <span class="font-lato">
         <%#= t :comments_count, scope: 'blogit.posts', count: post.comments_count %>
@@ -20,7 +20,7 @@
     <li>
       <i class="fa fa-folder-open-o"></i>
       <% post.tag_list.each do |tag| %>
-        <%= link_to tagged_blog_posts_path(tag), class: "category" do %>
+        <%= link_to blog.tagged_blog_posts_path(tag), class: "category" do %>
           <span class="font-lato"><%= tag %></span>
         <% end %>
       <% end %>

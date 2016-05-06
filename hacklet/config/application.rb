@@ -33,5 +33,7 @@ module Hacklet
         html_tag.insert html_tag.index('>'), ' class="error"'
       end
     end
+
+    config.autoload_paths += %W(#{config.root}/lib) # add this line
   end
 end

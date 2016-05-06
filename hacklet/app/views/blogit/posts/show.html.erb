@@ -12,7 +12,7 @@
         <div class="divider divider-dotted"></div>
 
         <% @post.tag_list.each do |tag| %>
-          <%= link_to tagged_blog_posts_path(tag), class: "tag" do %>
+          <%= link_to blog.tagged_blog_posts_path(tag), class: "tag" do %>
             <span class="txt"><%= tag %></span>
             <span class="num">12</span>
           <% end %>
@@ -42,81 +42,25 @@
         <div class="divider"></div>
 
         <ul class="pager">
-          <li class="previous">
-            <%# TODO: Extract to controller and check for nil (first post) %>
-            <%= link_to post_path(Blogit::Post.find_by(id: @post.id - 1)), class: 'noborder' do %>
-              &larr; Previous post
-            <% end %>
-          </li>
-          <li class="next">
-            <%# TODO: Extract and check for nil (no next post) %>
-            <%= link_to post_path(Blogit::Post.find_by(id: @post.id + 1)), class: 'noborder' do %>
-              &rarr; Next post
-            <% end %>
-          </li>
+          <% if @prev_post %>
+            <li class="previous">
+              <%= link_to blog.post_path(@prev_post), class: 'noborder' do %>
+                &larr; Previous post
+              <% end %>
+            </li>
+          <% end %>
+          <% if @next_post %>
+            <li class="next">
+              <%= link_to blog.post_path(@next_post), class: 'noborder' do %>
+                &rarr; Next post
+              <% end %>
+            </li>
+          <% end %>
         </ul>
-
 
         <div class="divider"></div>
 
-        <div id="comments" class="comments">
-          <h4 class="page-header margin-bottom-60 size-20">
-            <span>3</span> COMMENTS
-          </h4>
-          <div class="comment-item">
-            <span class="user-avatar">
-              <img class="pull-left media-object" src="assets/images/avatar.png" width="64" height="64" alt="">
-            </span>
-
-            <div class="media-body">
-              <a href="#commentForm" class="scrollTo comment-reply">reply</a>
-              <h4 class="media-heading bold">John Doe</h4>
-              <small class="block">June 29, 2014 - 11:23</small>
-              Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            </div>
-          </div>
-
-          <h4 class="page-header size-20 margin-bottom-60 margin-top-100">
-            LEAVE A <span>COMMENT</span>
-          </h4>
-
-          <form action="#" method="post">
-            <div class="row">
-              <div class="form-group">
-                <div class="col-md-4">
-                  <label>NAME</label>
-                  <input required="required" type="text" value="" maxlength="100" class="form-control input-lg" name="author" id="author">
-                </div>
-                <div class="col-md-4">
-                  <label>EMAIL</label>
-                  <input required="required" type="email" value="" maxlength="100" class="form-control input-lg" name="contact_email" id="contact_email">
-                </div>
-                <div class="col-md-4">
-                  <label>WEBSITE</label>
-                  <input type="email" value="" maxlength="100" class="form-control input-lg" name="url" id="url">
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label>COMMENT</label>
-                  <textarea required="required" maxlength="5000" rows="5" class="form-control" name="comment" id="comment"></textarea>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <button class="btn btn-3d btn-lg btn-reveal btn-black">
-                  <i class="fa fa-check"></i>
-                  <span>SUBMIT MESSAGE</span>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
+        <%= comments_for_post @post %>
       </div>
 
       <div class="col-md-3 col-sm-3">
@@ -124,53 +68,63 @@
           <ul class="nav nav-tabs nav-bottom-border nav-justified">
             <li class="active">
               <a href="#tab_1" data-toggle="tab">
-                Related
+                Recent
               </a>
             </li>
             <li>
               <a href="#tab_2" data-toggle="tab">
-                Recent
+                Related
               </a>
             </li>
           </ul>
 
           <div class="tab-content margin-bottom-60 margin-top-30">
             <div id="tab_1" class="tab-pane active">
-              <% related_posts_for_post(@post).each do |related_post| %>
+              <% latest_posts.each do |post| %>
                 <div class="row tab-post">
                   <div class="col-md-9 col-sm-9 col-xs-9">
-                    <%= link_to related_post.title, post_path(related_post),
+                    <%= link_to post.title, blog.post_path(post),
                       class: 'tab-post-link' %>
-                    <small>June 29 2014</small>
+                    <small>
+                      <%= time_tag post.created_at, pubdate: true,
+                        format: blogit_conf.datetime_format %>
+                    </small>
                   </div>
                 </div>
               <% end %>
             </div>
 
             <div id="tab_2" class="tab-pane">
-              <div class="row tab-post">
-                <div class="col-md-9 col-sm-9 col-xs-9">
-                  <a href="blog-sidebar-left.html" class="tab-post-link">Curabitur pellentesque neque eget diam</a>
-                  <small>June 29 2014</small>
+              <% related_posts_for_post(@post).each do |related_post| %>
+                <div class="row tab-post">
+                  <div class="col-md-9 col-sm-9 col-xs-9">
+                    <%= link_to related_post.title, blog.post_path(related_post),
+                      class: 'tab-post-link' %>
+                    <small>
+                      <%= time_tag related_post.created_at, pubdate: true,
+                        format: blogit_conf.datetime_format %>
+                    </small>
+                  </div>
                 </div>
-              </div>
+              <% end %>
             </div>
           </div>
         </div>
 
-        <h3 class="hidden-xs size-16 margin-bottom-20">TAGS</h3>
-        <div class="hidden-xs margin-bottom-60">
-          <% @post.tag_list.each do |tag| %>
-            <%= link_to tagged_blog_posts_path(tag), class: "tag" do %>
-              <span class="txt"><%= tag %></span>
-              <span class="num">12</span>
+        <% if @post.tag_list.length > 0 %>
+          <h3 class="hidden-xs size-16 margin-bottom-20">TAGS</h3>
+          <div class="hidden-xs margin-bottom-60">
+            <% @post.tag_list.each do |tag| %>
+              <%= link_to blog.tagged_blog_posts_path(tag), class: "tag" do %>
+                <span class="txt"><%= tag %></span>
+                <span class="num">12</span>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
 </section>
 
-<%= share_bar_for_post @post %>
-<%= comments_for_post @post %>
+<%# share_bar_for_post @post %>
