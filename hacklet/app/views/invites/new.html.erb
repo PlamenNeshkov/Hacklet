@@ -39,7 +39,9 @@
                 Invite registered members
               </header>
               <fieldset class="nomargin">
-                <%= text_field_tag "#{f.object_name}[reg_recipients]", nil, id: 'reg-recipients-selection', autofocus: true, placeholder: 'Type to search users', required: true %>
+                <%= text_field_tag "#{f.object_name}[reg_recipients]", nil,
+                  id: 'reg-recipients-selection', autofocus: true,
+                  placeholder: 'Type to search users and click on their name', required: true %>
                 <%= f.hidden_field :team_id, :value => @invite.team_id %>
               </fieldset>
               <footer>
@@ -74,7 +76,9 @@
                 Invite new members (will have to register before accepting)
               </header>
               <fieldset class="nomargin">
-                <%= text_field_tag "#{f.object_name}[new_recipients]", nil, id: 'new-recipients-selection', autofocus: true, placeholder: "Enter your friend's emails", required: true %>
+                <%= text_field_tag "#{f.object_name}[new_recipients]", nil,
+                  id: 'new-recipients-selection', autofocus: true,
+                  placeholder: "Enter your friend's emails and press Enter", required: true %>
                 <%= f.hidden_field :team_id, :value => @invite.team_id %>
               </fieldset>
 
