@@ -1,6 +1,10 @@
 <%= form_for setup_team(@team), html: {class: 'sky-form boxed'} do |f| %>
   <header class="size-18 margin-bottom-20">
-    New team
+    <% if controller.action_name == 'new' %>
+      New team
+    <% elsif controller.action_name == 'edit' %>
+      Edit team
+    <% end %>
   </header>
   <fieldset class="nomargin">
     <% if @team.errors.any? %>
@@ -36,7 +40,11 @@
       <i class="fa fa-ban"></i> Cancel
     <% end %>
     <%= f.button type: 'submit', class: 'btn btn-primary noradius pull-right' do %>
-      <i class="fa fa-check"></i> Create
+      <% if controller.action_name == 'new' %>
+        <i class="fa fa-check"></i> Create
+      <% elsif controller.action_name == 'edit' %>
+        <i class="fa fa-check"></i> Submit
+      <% end %>
     <% end %>
   </footer>
 <% end %>

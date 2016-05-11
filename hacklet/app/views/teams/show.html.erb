@@ -13,12 +13,17 @@
     <div class="row">
       <% if @team.captain == current_user %>
         <%= link_to edit_team_path(@team), class: 'btn btn-primary pull-right' do %>
-          <i class="fa fa-cogs"></i> Edit team
+          <i class="fa fa-cogs"></i> Edit
         <% end %>
 
         <%= link_to new_invite_path(@team.id), class: 'btn btn-primary pull-right' do %>
           <i class="fa fa-user-plus"></i> Invite member
         <% end %>
+
+        <%= link_to edit_team_path(@team), class: 'btn btn-primary pull-right' do %>
+          <i class="fa fa-upload"></i> Submit project
+        <% end %>
+
       <% end %>
     </div>
 
