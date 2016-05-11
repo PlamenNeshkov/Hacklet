@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506193829) do
+ActiveRecord::Schema.define(version: 20160511055329) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "user_id"
@@ -174,6 +174,8 @@ ActiveRecord::Schema.define(version: 20160506193829) do
     t.string   "facebook_url"
     t.string   "twitter_url"
     t.string   "avatar"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

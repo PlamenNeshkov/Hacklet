@@ -1,0 +1,47 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <h2 class="text-center">Mentorship application</h2>
+    </div>
+
+    <div class="row process-wizard process-wizard-primary">
+
+    	<div class="col-xs-4 process-wizard-step <%= @step[1] %>">
+    		<div class="text-center process-wizard-stepnum">Step 1</div>
+    		<div class="progress"><div class="progress-bar"></div></div>
+    		<%= link_to '', new_user_registration_url, class: "process-wizard-dot" %>
+    		<div class="process-wizard-info text-center">Register an account and log in.</div>
+    	</div>
+
+    	<div class="col-xs-4 process-wizard-step <%= @step[2] %>">
+    		<div class="text-center process-wizard-stepnum">Step 2</div>
+    		<div class="progress"><div class="progress-bar"></div></div>
+    		<a href="#" class="process-wizard-dot"></a>
+    		<div class="process-wizard-info text-center">Write a description in your profile.</div>
+    	</div>
+
+    	<div class="col-xs-4 process-wizard-step <%= @step[3] %>">
+    		<div class="text-center process-wizard-stepnum">Step 3</div>
+    		<div class="progress"><div class="progress-bar"></div></div>
+    		<a href="#" class="process-wizard-dot"></a>
+    		<div class="process-wizard-info text-center">Enter social info in your profile.</div>
+    	</div>
+    </div>
+
+    <hr/>
+
+    <% if @ready %>
+      <div class="alert alert-mini alert-success margin-bottom-30">
+        <strong>Well done!</strong> All steps complete.
+      </div>
+    <% else %>
+      <div class="alert alert-mini alert-warning margin-bottom-30">
+        Complete all steps to submit application.
+      </div>
+    <% end %>
+
+    <div class="row">
+      <button type="button" class="btn btn-primary btn-lg btn-block <%= 'disabled' unless @ready %>">Apply</button>
+    </div>
+  </div>
+</section>

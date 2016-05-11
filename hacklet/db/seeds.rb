@@ -22,6 +22,9 @@ Event.create!(title: "HackTUES 3",
 end
 
 User.delete_all
-User.create(email: "ivo@test.com", password: "testtest", confirmed_at: DateTime.now)
-User.create(email: "fiki@test.com", password: "testtest", confirmed_at: DateTime.now)
-User.create(email: "foo@bar.com", password: "testtest", confirmed_at: DateTime.now)
+User.create(email: "ivo@test.com", password: "testtest",
+        first_name: "Ivo", last_name: "Ivo", confirmed_at: DateTime.now)
+User.create(email: "fiki@test.com", password: "testtest",
+        first_name: "Fikret", last_name: "Storaro", confirmed_at: DateTime.now)
+User.create(email: "foo@bar.com", password: "testtest",
+        first_name: "Pesho", last_name: "Goshov", confirmed_at: DateTime.now)
