@@ -1,9 +1,8 @@
-<section class="page-header dark page-header-xs">
+<section class="page-header page-header-xs">
   <div class="container">
-    <h1>BLOG</h1>
-    <ol class="breadcrumb">
-      <li><a href="/">Home</a></li>
-      <li class="<%= 'active' if params[:tag] == nil %>"><a href="/blog">Blog</a></li>
+    <ol class="breadcrumb breadcrumb-inverse">
+      <li><a href="/">Blog</a></li>
+      <li class="<%= 'active' if params[:tag] == nil %>"><a href="/blog">Posts</a></li>
       <% if params[:tag] %>
         <li class="active"><%= params[:tag] %></li>
       <% end %>

@@ -1,8 +1,6 @@
-<section class="page-header">
+<section class="page-header page-header-xs">
   <div class="container">
-    <h1><%= @team.name  %></h1>
-    <span><%= @team.event.title %></span>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb breadcrumb-inverse">
       <li><a href="#">Home</a></li>
       <li><%= link_to 'Teams', teams_path %></li>
       <li class="active"><%= @team.name %></li>
@@ -11,6 +9,7 @@
 </section>
 <section>
   <div class="container">
+    <h1>Team "<%= @team.name  %>"</h1>
     <div class="row">
       <% if @team.captain == current_user %>
         <%= link_to edit_team_path(@team), class: 'btn btn-primary pull-right' do %>
