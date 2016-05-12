@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   resources :teams
   resources :events
   resources :mentors
-  resources :projects
+  resources :projects do
+    member do
+      get 'submit'
+    end
+  end
 
   get "invites/:id/new", to: "invites#new", as: "new_invite"
   post "invites/create", to: "invites#create"

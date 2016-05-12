@@ -13,11 +13,18 @@
   <div class="container">
     <div class="row">
       <div class="col-md-9 col-sm-9">
+        <% if @projects.empty? %>
+          <div class="alert alert-bordered-dotted margin-bottom-30"><!-- DOTTED --></span>
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4><strong>No submitted projects found</strong></h4>
+            <p>Either there's a hackathon running and no one submitted their projects or the system has been reset.</p>
+          </div>
+        <% end %>
+
         <% @projects.each do |project| %>
-          <%# if project.submitted %>
             <div class="row">
               <div class="col-md-2">
-                <img src="assets/images/demo/brands/1.jpg" class="img-responsive" alt="company logo">
+                <%= image_tag project.image_url.to_s, class: 'img-responsive', alt: 'Project image' %>
               </div>
               <div class="col-md-10">
                 <h4 class="margin-bottom-10"><%= project.name %></h4>
@@ -28,7 +35,9 @@
                 <p><%= project.description %></p>
               </div>
             </div>
-          <hr />
+            <% if project != @projects.last %>
+              <hr />
+            <% end %>
         <% end %>
       </div>
     </div>

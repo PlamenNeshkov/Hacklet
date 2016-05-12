@@ -1,4 +1,4 @@
-<%= form_for(@project) do |f| %>
+<%= form_for @project, :html => {:multipart => true} do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -16,7 +16,12 @@
     <%= f.text_field :repository_url %>
   </div>
 
-  <%# Insert image uploader here %>
+  <p>
+    <label>Project image</label>
+    <%= image_tag @project.image_url if @project.image? %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </p>
 
   <div class="actions">
     <%= f.submit %>

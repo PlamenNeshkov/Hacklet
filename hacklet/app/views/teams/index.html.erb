@@ -8,44 +8,53 @@
 </section>
 <section>
   <div class="container">
+    <% if @teams.empty? %>
+      <div class="alert alert-bordered-dotted margin-bottom-30"><!-- DOTTED --></span>
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4><strong>No teams found</strong></h4>
+        <p>Be the first one to create a team and invite your friends!</p>
+      </div>
+    <% end %>
     <div class="row">
       <%= link_to new_team_path, class: 'btn btn-success' do %>
         <i class="fa fa-plus"></i> New team
       <% end %>
     </div>
-    <div class="row">
-      <div class="clearfix search-result">
-        <table class="table table-striped table-bordered table-hover margin-top30 table-vertical-middle">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Captain</th>
-              <th>Members</th>
-              <th>Project</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @teams.each do |team| %>
+    <% if not @teams.empty? %>
+      <div class="row">
+        <div class="clearfix search-result">
+          <table class="table table-striped table-bordered table-hover margin-top30 table-vertical-middle">
+            <thead>
               <tr>
-                <td><%= team.name %></td>
-                <td><%= team.captain.email %></td>
-                <td>4/5</td>
-                <td><%= team.project.name %></td>
-                <td>
-                  <%= link_to team, class: 'btn btn-xs btn-primary' do %>
-                    <span>Show</span>
-                  <% end %>
-                </td>
+                <th>Name</th>
+                <th>Captain</th>
+                <th>Members</th>
+                <th>Project</th>
+                <th>Details</th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              <% @teams.each do |team| %>
+                <tr>
+                  <td><%= team.name %></td>
+                  <td><%= team.captain.email %></td>
+                  <td>4/5</td>
+                  <td><%= team.project.name %></td>
+                  <td>
+                    <%= link_to team, class: 'btn btn-xs btn-primary' do %>
+                      <span>Show</span>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
 
-      <br />
-      <p class="pull-right"><%= page_entries_info @teams, :entry_name => 'team' %></p>
-      <%= paginate @teams %>
-    </div>
+        <br />
+        <p class="pull-right"><%= page_entries_info @teams, :entry_name => 'team' %></p>
+        <%= paginate @teams %>
+      </div>
+    <% end %>
   </div>
 </section>
