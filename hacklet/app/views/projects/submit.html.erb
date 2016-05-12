@@ -1,6 +1,18 @@
-<h1>Submit a project</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+<section class="page-header page-header-xs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb-inverse">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li class="active">Submit</li>
+    </ol>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-3 col-sm-offset-3 col-md-6 col-sm-6">
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+</section>
