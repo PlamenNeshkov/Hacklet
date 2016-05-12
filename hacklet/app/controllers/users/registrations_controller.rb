@@ -37,14 +37,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def profile
-    @teams = Team
-      .includes(:participations)
-      .where('teams.captain_id = ? OR participations.user_id = ?',
-              current_user.id, current_user.id)
-      .references(:participations)
+    @teams = get_teams
   end
 
   def projects
+    teams = get_teams.pluck(:id)
+
+    @projects = Project
+      .where(team: teams)
+      .order(updated_at: :desc)
   end
 
   def edit
@@ -83,5 +84,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    # TODO: Extract to model?
+    def get_teams
+      Team
+        .includes(:participations)
+        .where('teams.captain_id = ? OR participations.user_id = ?',
+                    @user.id, @user.id)
+        .references(:participations)
     end
 end

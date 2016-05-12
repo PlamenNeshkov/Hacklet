@@ -58,7 +58,9 @@
   </div> -->
 
   <div class="text-muted">
-    <h2 class="size-18 text-muted margin-bottom-6"><b>About</b></h2>
+    <% if @user.about_text? || @user.site_url? || @user.facebook_url? || @user.twitter_url? %>
+      <h2 class="size-18 text-muted margin-bottom-6"><b>About</b></h2>
+    <% end %>
     <% if @user.about_text? %>
       <%= @user.about_text %>
     <% else %>
@@ -78,7 +80,7 @@
       <% if @user.twitter_url? %>
         <li class="margin-bottom-10"><i class="fa fa-twitter width-20 hidden-xs hidden-sm"></i> <a href="<%= @user.twitter_url %>">Twitter</a></li>
       <% end %>
-      <% if !@user.site_url? && !@user.facebook_url? && !@user.twitter_url %>
+      <% if !@user.site_url? && !@user.facebook_url? && !@user.twitter_url && @user == current_user%>
         Go to <%= link_to 'Settings', user_settings_path(current_user) %> to add social links.
       <% end %>
     </ul>
