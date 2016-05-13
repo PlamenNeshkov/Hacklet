@@ -21,6 +21,10 @@
         <%= f.file_field :image, { id: 'file', onchange: 'this.parentNode.nextSibling.value = this.value' } %> Browse
       </div><input type="text" placeholder="Select project image" readonly>
     </label>
+    <br />
+    <%= text_field_tag "#{f.object_name}[technologies]", nil,
+      id: 'technologies-selection', autofocus: true,
+      placeholder: 'Type to search technologies and click on the result to add it', required: true %>
     <hr />
   </fieldset>
   <footer>

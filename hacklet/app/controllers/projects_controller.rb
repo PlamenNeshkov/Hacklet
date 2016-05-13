@@ -13,7 +13,13 @@ class ProjectsController < ApplicationController
 
   def update
     respond_to do |format|
-      merged_params = project_params.merge(submitted: true)
+      additional_params = {}
+      additional_params[:submitted] = true
+      additional_params[:technologies] = Technology
+        .where(name: project_params[:technologies].split(','))
+
+      merged_params = project_params.merge(additional_params)
+
       if @project.update(merged_params)
         format.html { redirect_to @project, notice: 'Project was successfully submit.' }
         format.json { render :show, status: :ok, location: @project }
@@ -32,12 +38,21 @@ class ProjectsController < ApplicationController
   #  end
   # end
 
+  def search_technologies
+    technologies = Technology.search(params[:query])
+
+    respond_to do |format|
+      format.json { render json: technologies }
+    end
+  end
+
+
   private
     def set_project
       @project = Project.find(params[:id])
     end
 
     def project_params
-      params.require(:project).permit(:repository_url, :image)
+      params.require(:project).permit(:repository_url, :image, :technologies)
     end
 end

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :projects do
     member do
       get 'submit'
+      get 'search_technologies'
     end
   end
 

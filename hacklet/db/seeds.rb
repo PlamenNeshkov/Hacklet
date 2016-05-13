@@ -28,3 +28,8 @@ User.create(email: "fiki@test.com", password: "testtest",
         first_name: "Fikret", last_name: "Storaro", confirmed_at: DateTime.now)
 User.create(email: "foo@bar.com", password: "testtest",
         first_name: "Pesho", last_name: "Goshov", confirmed_at: DateTime.now)
+
+Technology.delete_all
+Technology.create(name: 'HTML', description: 'Hypertext Markup Language')
+Technology.create(name: 'Ruby on Rails', description: 'A web framework')
+Technology.create(name: 'PHP', description: 'Something bad')
