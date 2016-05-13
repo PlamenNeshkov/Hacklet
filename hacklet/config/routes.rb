@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "sponsors", to: "sponsors#index"
+
   get "search/recipients", to: "search#recipients"
   get "search/technologies", to: "search#technologies"
 
