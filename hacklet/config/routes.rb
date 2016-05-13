@@ -14,13 +14,14 @@ Rails.application.routes.draw do
   resources :projects do
     member do
       get 'submit'
-      get 'search_technologies'
     end
   end
 
+  get "search/recipients", to: "search#recipients"
+  get "search/technologies", to: "search#technologies"
+
   get "invites/:id/new", to: "invites#new", as: "new_invite"
   post "invites/create", to: "invites#create"
-  get "invites/search_recipients", to: "invites#search_recipients"
 
   # Third party
   get "blog/posts/:id", to: "posts#show", as: "post"

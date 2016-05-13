@@ -40,14 +40,6 @@ class InvitesController < ApplicationController
     end
   end
 
-  def search_recipients
-    users = User.search(params[:query])
-
-    respond_to do |format|
-      format.json { render json: users }
-    end
-  end
-
   def invite_params
     params.require(:invite).permit(:team_id)
   end

@@ -5,7 +5,7 @@ var engine = new Bloodhound({
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
         wildcard: '%QUERY',
-        url: '/projects/search_technologies?query=%QUERY',
+        url: '/search/technologies?query=%QUERY',
         transform: function (response) {
             return $.map(response, function (technology) {
                 return {

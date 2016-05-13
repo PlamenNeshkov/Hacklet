@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
       additional_params = {}
       additional_params[:submitted] = true
       additional_params[:technologies] = Technology
-        .where(name: project_params[:technologies].split(','))
+        .where(name: project_params[:technologies].split(', '))
 
       merged_params = project_params.merge(additional_params)
 
@@ -37,15 +37,6 @@ class ProjectsController < ApplicationController
   #    format.json { head :no_content }
   #  end
   # end
-
-  def search_technologies
-    technologies = Technology.search(params[:query])
-
-    respond_to do |format|
-      format.json { render json: technologies }
-    end
-  end
-
 
   private
     def set_project

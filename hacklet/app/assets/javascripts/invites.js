@@ -5,7 +5,7 @@ var engine = new Bloodhound({
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
         wildcard: '%QUERY',
-        url: '/invites/search_recipients?query=%QUERY',
+        url: '/search/invites?query=%QUERY',
         transform: function (response) {
             return $.map(response, function (user) {
                 return {

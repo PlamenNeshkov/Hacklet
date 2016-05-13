@@ -1,7 +1,6 @@
 class Project < ActiveRecord::Base
   belongs_to :team
-
-  has_many :technologies
+  has_and_belongs_to_many :technologies
 
   validates :name, :description, presence: true
   validates :repository_url, :format => URI::regexp(%w(http https)), :allow_blank => true
