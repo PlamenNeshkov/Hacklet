@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513110248) do
+ActiveRecord::Schema.define(version: 20160514120431) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "user_id"
@@ -60,6 +60,12 @@ ActiveRecord::Schema.define(version: 20160513110248) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.boolean  "active"
+  end
+
+  create_table "genders", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "invites", force: :cascade do |t|
@@ -180,10 +186,12 @@ ActiveRecord::Schema.define(version: 20160513110248) do
     t.string   "avatar"
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "gender_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["gender_id"], name: "index_users_on_gender_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["role_id"], name: "index_users_on_role_id"
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true

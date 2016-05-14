@@ -21,6 +21,11 @@ Event.create!(title: "HackTUES 3",
   Role.find_or_create_by({name: role})
 end
 
+Gender.delete_all
+Gender.create(value: 'Male')
+Gender.create(value: 'Female')
+Gender.create(value: 'Other')
+
 User.delete_all
 User.create(email: "ivo@test.com", password: "testtest",
         first_name: "Ivo", last_name: "Ivo", confirmed_at: DateTime.now)

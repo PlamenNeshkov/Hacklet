@@ -77,9 +77,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
   private
-    # TODO: Override sign_up_params too as custom attributes are implemented
     def account_update_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :about_text, :site_url, :facebook_url, :twitter_url, :avatar)
+      params.require(:user).permit(:email, :password, :password_confirmation,
+          :first_name, :last_name, :gender, :current_password, :about_text,
+          :site_url, :facebook_url, :twitter_url, :avatar)
+    end
+
+    def sign_up_params
+      params.require(:user).permit(:email, :password, :password_confirmation,
+          :first_name, :last_name, :gender_id)
     end
 
     def set_user

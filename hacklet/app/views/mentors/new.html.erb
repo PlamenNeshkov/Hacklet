@@ -1,6 +1,22 @@
 <section>
   <div class="container">
     <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+      <% if @ready %>
+        <div class="alert alert-mini alert-success margin-bottom-30">
+          <strong>Well done!</strong> All steps complete.
+        </div>
+      <% else %>
+        <div class="alert alert-mini alert-warning margin-bottom-30">
+          Complete all steps to submit application.
+        </div>
+      <% end %>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+
+    <div class="row">
       <h2 class="text-center">Mentorship application</h2>
     </div>
 
@@ -30,18 +46,12 @@
 
     <hr/>
 
-    <% if @ready %>
-      <div class="alert alert-mini alert-success margin-bottom-30">
-        <strong>Well done!</strong> All steps complete.
-      </div>
-    <% else %>
-      <div class="alert alert-mini alert-warning margin-bottom-30">
-        Complete all steps to submit application.
-      </div>
-    <% end %>
-
     <div class="row">
-      <button type="button" class="btn btn-primary btn-lg btn-block <%= 'disabled' unless @ready %>">Apply</button>
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-primary btn-lg btn-block <%= 'disabled' unless @ready %>">Apply</button>
+      </div>
+      <div class="col-md-4"></div>
     </div>
   </div>
 </section>
