@@ -14,4 +14,12 @@ class SearchController < ApplicationController
       format.json { render json: technologies }
     end
   end
+
+  def categories
+    categories = Category.search(params[:query])
+
+    respond_to do |format|
+      format.json { render json: categories }
+    end
+  end
 end

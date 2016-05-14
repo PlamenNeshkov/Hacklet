@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 20160514120431) do
 
   add_index "blogit_posts", ["blogger_type", "blogger_id"], name: "index_blogit_posts_on_blogger_type_and_blogger_id"
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "categories_projects", id: false, force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "project_id"
+  end
+
+  add_index "categories_projects", ["category_id", "project_id"], name: "index_categories_projects_on_category_id_and_project_id"
+
   create_table "events", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -120,6 +131,15 @@ ActiveRecord::Schema.define(version: 20160514120431) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sponsors", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "site_url"
+    t.string   "image"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "taggings", force: :cascade do |t|

@@ -1099,7 +1099,7 @@
 
 		if(_el.length > 0) {
 
-			loadScript(plugin_path + 'magnific-popup/jquery.magnific-popup.min.js', function() {
+          loadScript("<%= asset_path 'magnific-popup/jquery.magnific-popup.min.js' %>", function() {
 
 				if(typeof(jQuery.magnificPopup) == "undefined") {
 					return false;
@@ -1335,8 +1335,7 @@
 		var _container = jQuery('.mix-grid');
 		
 		if(_container.length > 0) {
-			loadScript(plugin_path + 'mixitup/jquery.mixitup.min.js', function() {
-
+          loadScript("<%= asset_path 'mixitup/jquery.mixitup.min.js' %>", function () {
 				if(jQuery().mixitup) {
 
 					_container.mixitup();

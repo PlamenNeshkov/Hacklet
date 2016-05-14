@@ -1,0 +1,66 @@
+<section class="page-header page-header-xs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb-inverse">
+      <li><a href="/">Home</a></li>
+      <li><a href="/sponsors">Sponsors</a></li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 col-sm-9">
+        <% if @sponsors.empty? %>
+          <div class="alert alert-bordered-dotted margin-bottom-30"></span>
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4><strong>No sponsors yet!</strong></h4>
+            <p>If you want to become our sponsor, use the form on the right.</p>
+          </div>
+        <% else %>
+          <% @sponsors.each do |sponsor| %>
+            <div class="row">
+              <div class="col-md-2">
+                <%= image_tag sponsor.image_url.to_s, class: 'img-responsive', alt: 'Company logo' %>
+              </div>
+              <div class="col-md-10">
+                <h4 class="margin-bottom-10"><%= sponsor.name %></h4>
+                <ul class="list-inline">
+                  <li><i class="fa fa-globe text-success"></i> <a class="text-success" href="<%= sponsor.site_url %>"><%= sponsor.site_url %></a></li>
+                </ul>
+                <p><%= sponsor.description %></p>
+              </div>
+            </div>
+            <% if sponsor != @sponsors.last %>
+              <hr />
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="col-md-3 col-sm-3">
+        <h4>Want to become a <strong>sponsor</strong>?</h4>
+        <p><em>By becoming a sponsor, you help in improving the Bulgarian IT industry!</em></p>
+        <hr />
+        <h4><strong>Contact</strong> us</h4>
+        <form action="#" method="post" class="sky-form clearfix">
+          <label class="input">
+            <i class="ico-prepend fa fa-user"></i>
+            <input type="text" placeholder="Company name">
+          </label>
+
+          <label class="input">
+            <i class="ico-prepend fa fa-envelope"></i>
+            <input type="text" placeholder="Email (to receive a reply on it)">
+          </label>
+
+          <label class="textarea">
+            <i class="ico-prepend fa fa-comment"></i>
+            <textarea rows="3" placeholder="Your message"></textarea>
+          </label>
+          <button class="btn btn-primary btn-sm pull-right">Submit your message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

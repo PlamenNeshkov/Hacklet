@@ -38,3 +38,10 @@ Technology.delete_all
 Technology.create(name: 'HTML', description: 'Hypertext Markup Language')
 Technology.create(name: 'Ruby on Rails', description: 'A web framework')
 Technology.create(name: 'PHP', description: 'Something bad')
+
+Category.delete_all
+Category.create(name: 'Web')
+Category.create(name: 'Mobile')
+Category.create(name: 'Desktop')
+Category.create(name: 'Embedded')
+Category.create(name: 'IoT')

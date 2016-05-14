@@ -24,7 +24,12 @@
     <br />
     <%= text_field_tag "#{f.object_name}[technologies]", nil,
       id: 'technologies-selection', autofocus: true,
-      placeholder: 'Type to search technologies and click on the result to add it', required: true %>
+      placeholder: 'PHP, Rails etc', required: true %>
+    <br />
+    <%= text_field_tag "#{f.object_name}[categories]", nil,
+      id: 'categories-selection', autofocus: true,
+      placeholder: 'Web, Mobile, Embedded, IoT etc', required: true %>
+
     <hr />
   </fieldset>
   <footer>
