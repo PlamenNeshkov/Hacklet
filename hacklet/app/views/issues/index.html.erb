@@ -1,0 +1,50 @@
+<section class="page-header page-header-xs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb-inverse">
+      <li><a href="/">Home</a></li>
+      <li><a href="/issues">Issues</a></li>
+    </ol>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row">
+      <% if @issues.empty? %>
+        <div class="alert alert-bordered-dotted margin-bottom-30"><!-- DOTTED --></span>
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4><strong>No issues found</strong></h4>
+          <p>If you have a problem with the current event, click <i>New issue</i>.</p>
+        </div>
+      <% end %>
+
+      <%= link_to new_issue_path, class: 'btn btn-success' do %>
+        <i class="fa fa-plus"></i> New issue
+      <% end %>
+
+      <% if not @issues.empty? %>
+        <div id="content" class="padding-20">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h6 class="nomargin">
+                About <%= @issues.count %> issues <small class="text-success">(<%= @solved_count %> solved) </small>
+                <span class="pull-right">
+                  <%= link_to 'New issue', new_issue_path %>
+                </span>
+              </h6>
+              <hr class="nomargin-bottom margin-top-10" />
+              <% @issues.each do |issue| %>
+                <div class="clearfix search-result">
+                  <h4><%= issue.title %></h4>
+                  <p><%= issue.description %></p>
+                </div>
+              <% end %>
+
+              <!-- PAGINATION -->
+              <!-- /PAGINATION -->
+            </div>
+          </div>
+        </div>
+      <% end  %>
+    </div>
+  </div>
+</section>

@@ -19,7 +19,11 @@
           show_comments_count: (Blogit.configuration.include_comments == :active_records) 
         }  %>
     <% else %>
-      No posts so far, check again later :)
+      <div class="alert alert-bordered-dotted margin-bottom-30"><!-- DOTTED --></span>
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4><strong>No posts found</strong></h4>
+        <p>Stay tuned, there may be some new posts soon.</p>
+      </div>
     <% end %>
 
     <%= paginate(@posts) %>
