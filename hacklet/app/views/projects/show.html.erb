@@ -82,44 +82,41 @@
 <section>
   <div class="container">
     <div class="heading-title heading-border">
-      <h3>Related <span>Projects</span></h3>
-      <p class="font-lato size-14">Lorem ipsum dolor sit amet.</p>
+      <h3><span>Related<span> projects</h3>
+      <p class="font-lato size-14">You may want to check these as well..</p>
     </div>
     <div class="text-center">
       <div class="owl-carousel owl-padding-1 nomargin buttons-autohide controlls-over" data-plugin-options='{"singleItem": false, "items": "4", "autoPlay": 3500, "navigation": true, "pagination": false}'>
 
-        <!-- item -->
-        <div class="item-box">
-          <figure>
-            <span class="item-hover">
-              <span class="overlay dark-5"></span>
-              <span class="inner">
+        <% @related_projects.each do |project| %>
+          <div class="item-box">
+            <figure>
+              <span class="item-hover">
+                <span class="overlay dark-5"></span>
+                <span class="inner">
+                  <a class="ico-rounded lightbox" href="<%= project.image_url.to_s %>" data-plugin-options='{"type":"image"}'>
+                    <span class="fa fa-plus size-20"></span>
+                  </a>
 
-                <!-- lightbox -->
-                <a class="ico-rounded lightbox" href="assets/images/demo/mockups/1200x800/16-min.jpg" data-plugin-options='{"type":"image"}'>
-                  <span class="fa fa-plus size-20"></span>
-                </a>
-
-                <!-- details -->
-                <a class="ico-rounded" href="portfolio-single-slider.html">
-                  <span class="glyphicon glyphicon-option-horizontal size-20"></span>
-                </a>
-
+                  <a class="ico-rounded" href="<%= project_path(project) %>">
+                    <span class="glyphicon glyphicon-option-horizontal size-20"></span>
+                  </a>
+                </span>
               </span>
-            </span>
 
-            <img class="img-responsive" src="assets/images/demo/mockups/600x399/16-min.jpg" width="600" height="399" alt="">
-          </figure>
+              <%= image_tag project.image_url.to_s, class: 'img-responsive', alt: 'Project image' %>
+            </figure>
 
-          <div class="item-box-desc">
-            <h3>Architect Project</h3>
-            <ul class="list-inline categories nomargin">
-              <li><a href="#">Architecture</a></li>
-              <li><a href="#">Design</a></li>
-            </ul>
+            <div class="item-box-desc">
+              <h3><%= project.name %></h3>
+              <ul class="list-inline categories nomargin">
+                <% project.categories.each do |category| %>
+                  <li><a href="#"><%= category.name %></a></li>
+                <% end %>
+              </ul>
+            </div>
           </div>
-        </div>
-        <!-- /item -->
+        <% end %>
       </div>
     </div>
   </div>

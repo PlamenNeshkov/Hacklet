@@ -1,5 +1,18 @@
-<h1>New Issue</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', issues_path %>
+<section class="page-header page-header-xs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb-inverse">
+      <li><a href="/">Home</a></li>
+      <li><a href="/teams">Teams</a></li>
+      <li class="active">Create a new team</li>
+    </ol>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-3 col-sm-offset-3 col-md-6 col-sm-6">
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+</section>

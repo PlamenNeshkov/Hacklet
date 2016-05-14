@@ -2,11 +2,15 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :submit, :update]
 
   def index
-    @projects = Project.all.where(submitted: true)
+    @projects = Project.all
+      .where(submitted: true)
+      .where(approved: true)
     @categories = Category.all
   end
 
   def show
+    @related_projects = Project
+      .where(categories: @project.categories)
   end
 
   def submit
