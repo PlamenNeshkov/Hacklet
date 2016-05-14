@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all.where(submitted: true)
+    @categories = Category.all
   end
 
   def show
@@ -17,6 +18,8 @@ class ProjectsController < ApplicationController
       additional_params[:submitted] = true
       additional_params[:technologies] = Technology
         .where(name: project_params[:technologies].split(', '))
+      additional_params[:categories] = Category.
+        where(name: project_params[:categories].split(', '))
 
       merged_params = project_params.merge(additional_params)
 
@@ -44,6 +47,7 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:repository_url, :image, :technologies)
+      params.require(:project).permit(:repository_url, :image,
+                                      :technologies, :categories)
     end
 end

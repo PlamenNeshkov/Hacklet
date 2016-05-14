@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get "search/recipients", to: "search#recipients"
   get "search/technologies", to: "search#technologies"
+  get "search/categories", to: "search#categories"
 
   get "invites/:id/new", to: "invites#new", as: "new_invite"
   post "invites/create", to: "invites#create"
