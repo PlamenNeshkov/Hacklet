@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   has_many :invitations, :class_name => 'Recipient'
   has_many :sent_invites, :class_name => 'Invite', :foreign_key => 'sender_id'
   has_many :attendances
+  belongs_to :user
+
+  validates :first_name, :last_name, presence: true
 
   mount_uploader :avatar, AvatarUploader
   blogs
