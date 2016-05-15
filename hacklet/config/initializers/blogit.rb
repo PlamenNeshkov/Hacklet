@@ -6,7 +6,7 @@ Blogit.configure do |config|
 
   config.include_share_bar = true
   config.twitter_username = "@hacktues"
-  config.blogger_display_name_method = :email
+  config.blogger_display_name_method = :full_name
   config.datetime_format = :short
   config.posts_per_page = 5
   config.ajax_comments = true

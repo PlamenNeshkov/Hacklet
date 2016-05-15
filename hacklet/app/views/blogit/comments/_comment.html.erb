@@ -1,17 +1,28 @@
-<%= content_tag(:div, id: "blogit_comment_#{comment.id}", class: "blogit_comment") do %>
+<% if comment.persisted? %>
+  <div class="comment-item">
+    <!--
+      <span class="user-avatar">
+      <img class="pull-left media-object" src="assets/images/avatar.png" width="64" height="64" alt="">
+      </span>
+    -->
 
-  <div class="blogit_comment__name">
-    <%= name_for_comment(comment) %>
+    <div class="media-body">
+      <a href="#comment-form" class="scrollTo comment-reply">reply</a>
+      <h4 class="media-heading bold">
+        <%= comment.name %>
+
+        <% if comment.website? %>
+          <small>
+            <%= link_to comment.website, comment.website %>
+          </small>
+        <% end %>
+      </h4>
+      <small class="block">
+        <%= time_tag(comment.created_at, format: blogit_conf.datetime_format) %>
+      </small>
+      <br />
+
+      <%= format_content(comment.body.to_s) %>
+    </div>
   </div>
-
-  <div class="blogit_comment__body">
-    <%= format_content(comment.body.to_s) %>
-  </div>
-
-  <div class="blogit_comment__created_at">
-    <%= t(:posted_on, scope: 'blogit.comments') %> 
-    <%= time_tag(comment.created_at, format: blogit_conf.datetime_format) %>
-  </div>
-
-<% end if comment.persisted? %>
-
+<% end %>

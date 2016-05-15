@@ -32,4 +32,8 @@ class User < ActiveRecord::Base
   def set_default_role
    self.role = Role.find_by(name: 'registered')
   end
+
+  def full_name
+    self.first_name + ' ' + self.last_name
+  end
 end

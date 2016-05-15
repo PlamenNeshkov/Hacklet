@@ -1,5 +1,5 @@
-<%= form_for [post, comment], remote: blogit_conf.ajax_comments,
-  html: { class: "blogit_form" } do |f| -%>
+<%= form_for [post, comment], url: blog.post_comments_path([post, comment]), remote: blogit_conf.ajax_comments, authenticity_token: true,
+  html: { id: "comment-form" } do |f| -%>
 
   <h4 class="page-header size-20 margin-bottom-60 margin-top-100">
     <%# t :leave_a_comment, scope: 'blogit.comments' %>
