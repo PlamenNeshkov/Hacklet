@@ -1,0 +1,63 @@
+<section class="page-header page-header-xs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb-inverse">
+      <li><a href="/">Home</a></li>
+      <li><a href="/event_photos">Gallery</a></li>
+    </ol>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <ul id="portfolio_filter" class="nav nav-pills margin-bottom-60">
+      <li class="filter active"><a data-filter="*" href="#">All</a></li>
+      <% @events.each do |event| %>
+        <li class="filter"><a data-filter=".<%= event.id %>" href="#"><%= event.title %></a></li>
+      <% end %>
+    </ul>
+    <div id="portfolio" class="clearfix portfolio-isotope portfolio-isotope-2">
+      <% if @event_photos.empty? %>
+        <div class="alert alert-bordered-dotted margin-bottom-30"><!-- DOTTED --></span>
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4><strong>No photos uploaded so far</strong></h4>
+          <p>Be the first one to upload a photo!</p>
+        </div>
+      <% end %>
+
+      <%= link_to new_event_photo_path, class: 'btn btn-success' do %>
+        <i class="fa fa-plus"></i> Upload photos
+      <% end %>
+
+      <br />
+      <br />
+
+      <% if @event_photos.any? %>
+        <% @event_photos.each do |event_photo| %>
+          <div class="portfolio-item <%= event_photo.event.id %>">
+
+            <div class="item-box">
+              <figure>
+                <span class="item-hover">
+                  <span class="overlay dark-5"></span>
+                  <span class="inner">
+                    <a class="ico-rounded lightbox" href="<%= event_photo.image_url.to_s %>" data-plugin-options='{"type":"image"}'>
+                      <span class="fa fa-plus size-20"></span>
+                    </a>
+                  </span>
+                </span>
+
+                <div class="item-box-overlay-title">
+                  <h3><%= event_photo.title %></h3>
+                  <ul class="list-inline categories nomargin">
+                    <li><a href="#"><%= event_photo.event.title %></a></li>
+                  </ul>
+                </div>
+
+                <%= image_tag event_photo.image_url.to_s, class: 'img-responsive', alt: 'Photo' %>
+              </figure>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>

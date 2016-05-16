@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :event_photos
   resources :issues
   # General
   root to: "home#index"

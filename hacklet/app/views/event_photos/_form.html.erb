@@ -1,0 +1,31 @@
+<%= form_for (EventPhoto.new), html: { class: 'sky-form boxed', multipart: true } do |f| %>
+  <header class="size-18 margin-bottom-20">
+    Add photos
+  </header>
+  <fieldset class="nomargin">
+    <label class="input margin-bottom-10">
+      <i class="ico-append fa fa-ticket"></i>
+      <%= f.text_field :title, autofocus: true, placeholder: 'Photo title', required: true %>
+      <b class="tooltip tooltip-bottom-right">Title of your photos</b>
+    </label>
+    <label for="file" class="input input-file">
+      <div class="button">
+        <%= file_field_tag 'photos[]', multiple: true, id: 'photos', onchange: 'this.parentNode.nextSibling.value = this.value' %> Browse
+      </div><input type="text" placeholder="Select photos" readonly>
+    </label>
+    <label class="select">
+      <%= f.collection_select :event_id, Event.all, :id, :title %>
+      <i class="fancy-arrow"></i>
+    </label>
+    <br />
+    <hr />
+  </fieldset>
+  <footer>
+    <%= link_to event_photos_path, class: 'btn btn-danger noradius pull-right' do %>
+      <i class="fa fa-ban"></i> Cancel
+    <% end %>
+    <%= f.button type: 'submit', class: 'btn btn-primary noradius pull-right' do %>
+      <i class="fa fa-check"></i> Submit
+    <% end %>
+  </footer>
+<% end %>
