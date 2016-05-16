@@ -27,8 +27,10 @@ Gender.create(value: 'Female')
 Gender.create(value: 'Other')
 
 User.delete_all
-User.create(email: "ivo@test.com", password: "testtest",
-        first_name: "Ivaylo", last_name: "Arnaudov", confirmed_at: DateTime.now, role: Role.find_by(name: 'admin'))
+user = User.create(email: "ivo@test.com", password: "testtest",
+        first_name: "Ivaylo", last_name: "Arnaudov", confirmed_at: DateTime.now)
+user.update(role: Role.find_by(name: 'admin'))
+
 User.create(email: "fiki@test.com", password: "testtest",
         first_name: "Fikret", last_name: "Storaro", confirmed_at: DateTime.now)
 User.create(email: "foo@bar.com", password: "testtest",
