@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   has_many :teams, dependent: :destroy
+  has_many :mentors
   mount_uploader :image, EventImageUploader
 
   validates :title, :description, :start, :end, :max_participants, presence: true

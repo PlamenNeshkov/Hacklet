@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514170947) do
+ActiveRecord::Schema.define(version: 20160516110553) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "user_id"
@@ -79,6 +79,16 @@ ActiveRecord::Schema.define(version: 20160514170947) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "given_items", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "given_items", ["item_id"], name: "index_given_items_on_item_id"
+  add_index "given_items", ["user_id"], name: "index_given_items_on_user_id"
+
   create_table "invites", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "team_id"
@@ -101,13 +111,22 @@ ActiveRecord::Schema.define(version: 20160514170947) do
   add_index "issues", ["event_id"], name: "index_issues_on_event_id"
   add_index "issues", ["user_id"], name: "index_issues_on_user_id"
 
+  create_table "items", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "qty"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "mentors", force: :cascade do |t|
     t.integer  "user_id"
     t.boolean  "approved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "event_id"
   end
 
+  add_index "mentors", ["event_id"], name: "index_mentors_on_event_id"
   add_index "mentors", ["user_id"], name: "index_mentors_on_user_id"
 
   create_table "participations", force: :cascade do |t|

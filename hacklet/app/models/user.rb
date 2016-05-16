@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_many :attendances
   belongs_to :user
 
+  has_many :given_items
+  has_many :items, through: :given_items
+
   validates :first_name, :last_name, presence: true
 
   mount_uploader :avatar, AvatarUploader

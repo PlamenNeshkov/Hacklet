@@ -38,6 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def profile
     @teams = get_teams
+    @items = Item.joins(:given_items).where(:given_items => { :user_id => params[:id] })
   end
 
   def projects
