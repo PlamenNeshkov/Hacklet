@@ -25,4 +25,24 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'User' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  config.model 'Item' do
+    object_label_method do
+      :item_label_method
+    end
+  end
+
+  def user_label_method
+    "#{self.first_name} #{self.last_name}"
+  end
+
+  def item_label_method
+    "#{self.name}"
+  end
 end

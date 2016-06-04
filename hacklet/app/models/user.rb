@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_many :attendances
   belongs_to :user
 
+  has_many :given_items
+  has_many :items, through: :given_items
+
   validates :first_name, :last_name, presence: true
 
   mount_uploader :avatar, AvatarUploader
@@ -31,9 +34,5 @@ class User < ActiveRecord::Base
 
   def set_default_role
    self.role = Role.find_by(name: 'registered')
-  end
-
-  def full_name
-    self.first_name + ' ' + self.last_name
   end
 end

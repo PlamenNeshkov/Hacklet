@@ -14,6 +14,7 @@ class MentorsController < ApplicationController
 
     @step = Array.new
     @ready = false
+    @pending = true
 
     @step[1] = 'active'
     @step[2] = 'disabled'
@@ -24,6 +25,10 @@ class MentorsController < ApplicationController
       @step[1] = 'complete'
       @step[2] = 'active'
 
+      if Mentor.find_by(user_id: current_user.id).nil?
+        @pending = false
+      end
+
       if current_user.about_text != ''
         @step[2] = 'complete'
 
@@ -33,6 +38,8 @@ class MentorsController < ApplicationController
         end
       end
     end
+
+    @events = Event.where('start > (?)', Time.now)
   end
 
   def edit
@@ -42,9 +49,10 @@ class MentorsController < ApplicationController
     @mentor = Mentor.new
     @mentor.approved = false
     @mentor.user_id = current_user.id
+    @mentor.event_id = params[:mentor][:event_id]
     @mentor.save
     flash[:info] = 'Your application has been submitted.';
-    redirect_to
+    redirect_to root_url
   end
 
   def update
@@ -57,6 +65,6 @@ class MentorsController < ApplicationController
     def mentor_params
       params
           .require(:mentor)
-          .permit(:user_id, :approved)
+          .permit(:user_id, :approved, :event_id)
     end
 end

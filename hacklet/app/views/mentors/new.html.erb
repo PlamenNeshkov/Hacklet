@@ -47,11 +47,26 @@
     <hr/>
 
     <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
-        <button type="button" class="btn btn-primary btn-lg btn-block <%= 'disabled' unless @ready %>">Apply</button>
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <% if @ready == true || @pending == false %>
+          <%= form_for @mentor, url: mentors_url(@mentor), html: {class: 'sky-form boxed'} do |f| %>
+            <fieldset class="nomargin">
+              <label class="select margin-bottom-10">
+              <%= f.collection_select :event_id, @events, :id, :title, prompt: 'Event', required: true  %>
+              </label>
+            </fieldset>
+            <div class="row margin-bottom-20">
+              <div class="col-md-12 text-center">
+              <%= f.button type: 'submit', class: 'btn btn-primary btn-md' do %>
+                <i class="fa fa-check"></i> Apply
+              <% end %>
+              </div>
+          </div>
+          <% end %>
+        <% end %>
       </div>
-      <div class="col-md-4"></div>
+      <div class="col-md-2"></div>
     </div>
   </div>
 </section>

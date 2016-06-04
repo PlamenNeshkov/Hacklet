@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   has_many :teams, dependent: :destroy
+  has_many :mentors
   has_many :event_photos
   mount_uploader :image, EventImageUploader
 
