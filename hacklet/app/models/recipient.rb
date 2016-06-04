@@ -5,7 +5,7 @@ class Recipient < ActiveRecord::Base
   validates :email, presence: true
 
   before_create :generate_token
-  before_save :assign_user_if_registered
+  before_create :assign_user_if_registered
 
   def generate_token
     self.token = Digest::SHA1.hexdigest([

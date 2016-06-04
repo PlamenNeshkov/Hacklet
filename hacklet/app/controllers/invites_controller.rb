@@ -9,12 +9,25 @@ class InvitesController < ApplicationController
     @invite.sender_id = current_user.id
     if recipient_params[:reg_recipients]
       recipient_params[:reg_recipients].split(', ').each do |email|
-        recipient = Recipient.create(email: email, accepted: false)
-        recipient.user = User.find_by_email(email)
-        @invite.recipients.push(recipient)
+        user = User.find_by_email(email)
+        if user == nil
+          flash[:notice] = "You must enter a valid user";
+          redirect_to new_invite_path(id: invite_params[:team_id]) and return
+        elsif current_user == user
+          flash[:notice] = "You can't invite yourself";
+          redirect_to new_invite_path(id: invite_params[:team_id]) and return
+        else
+          recipient = Recipient.create(email: email, accepted: false)
+          @invite.recipients.push(recipient)
+        end
       end
     elsif recipient_params[:new_recipients]
       recipient_params[:new_recipients].split(', ').each do |email|
+        if current_user.email == email
+          flash[:notice] = "You can't invite yourself";
+          redirect_to new_invite_path(id: invite_params[:team_id]) and return
+        end
+
         recipient = Recipient.create(email: email, accepted: false)
         @invite.recipients.push(recipient)
       end

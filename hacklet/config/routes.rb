@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   get "sponsors", to: "sponsors#index"
 
-  get "search/recipients", to: "search#recipients"
+  get "search/users", to: "search#users"
   get "search/technologies", to: "search#technologies"
   get "search/categories", to: "search#categories"
 
