@@ -22,8 +22,7 @@ class ApplicationController < ActionController::Base
   # Returns true if the user (Blogger) is permitted
   # Returns false if the user (Blogger) is not permitted
   def authenticate_blogger
-    #current_user.admin?
-    true
+    current_user.admin?
   end
 
   # The sign out URL to leave the admin dashboard
@@ -42,5 +41,9 @@ class ApplicationController < ActionController::Base
 
   def latest_posts
     Blogit::Post.last(3)
+  end
+
+  def latest_invites_for_user
+    current_user.invitations.where(accepted: nil)
   end
 end

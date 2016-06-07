@@ -7250,12 +7250,12 @@ ul.search-history {
 
 	/* footer contact text */
 	#footer address {
-		background:url('/assets/smarty/world-map.png') no-repeat center;
+		background: image-url('smarty/world-map.png') no-repeat center;
 	}
 	#footer address .footer-sprite {
 		margin-bottom:20px;
 		padding-left:30px; 
-		background:url('/assets/smarty/footer_sprite.png') no-repeat 0 0;
+		background: image-url('smarty/footer_sprite.png') no-repeat 0 0;
 	}
 		#footer address .footer-sprite:last-child {
 			margin-bottom:0;

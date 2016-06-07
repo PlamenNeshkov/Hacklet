@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   get "invites/:id/new", to: "invites#new", as: "new_invite"
   post "invites/create", to: "invites#create"
+  get "invites/accept/:token", to: "invites#accept"
+  get "invites/decline/:token", to: "invites#decline"
 
   # Third party
   get "blog/posts/:id", to: "posts#show", as: "post"

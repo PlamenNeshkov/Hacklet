@@ -5,6 +5,7 @@ class InvitesController < ApplicationController
   end
 
   def create
+    # TODO: Refactor this hell
     @invite = Invite.new(invite_params)
     @invite.sender_id = current_user.id
     if recipient_params[:reg_recipients]
@@ -17,7 +18,7 @@ class InvitesController < ApplicationController
           flash[:notice] = "You can't invite yourself";
           redirect_to new_invite_path(id: invite_params[:team_id]) and return
         else
-          recipient = Recipient.create(email: email, accepted: false)
+          recipient = Recipient.create(email: email)
           @invite.recipients.push(recipient)
         end
       end
@@ -28,7 +29,7 @@ class InvitesController < ApplicationController
           redirect_to new_invite_path(id: invite_params[:team_id]) and return
         end
 
-        recipient = Recipient.create(email: email, accepted: false)
+        recipient = Recipient.create(email: email)
         @invite.recipients.push(recipient)
       end
     end
@@ -53,11 +54,31 @@ class InvitesController < ApplicationController
     end
   end
 
+  def accept
+    accept_or_decline_invite(params[:token], true)
+  end
+
+  def decline
+    accept_or_decline_invite(params[:token], false)
+  end
+
   def invite_params
     params.require(:invite).permit(:team_id)
   end
 
   def recipient_params
     params.require(:invite).permit(:reg_recipients, :new_recipients)
+  end
+
+  private
+  def accept_or_decline_invite(recipient_token, accepted)
+    recipient = Recipient.find_by_token(recipient_token)
+    recipient.accepted = accepted
+
+    if accepted
+      team = recipient.invite.team
+      team.members << resource
+      team.save
+    end
   end
 end

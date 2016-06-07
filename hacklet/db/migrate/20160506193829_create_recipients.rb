@@ -3,7 +3,7 @@ class CreateRecipients < ActiveRecord::Migration
     create_table :recipients do |t|
       t.string :email
       t.string :token
-      t.boolean :accepted
+      t.boolean :accepted, :null => true
 
       t.belongs_to :invite
       t.belongs_to :user, :null => true

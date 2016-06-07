@@ -10,6 +10,21 @@
         <%= value %>
       </div>
     <% end %>
+    <% if latest_invites_for_user.length > 0 %>
+      <div class="alert alert-warning margin-bottom-30">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h4>You have new invites pending</h4>
+        <% latest_invites_for_user.each do |recipient| %>
+          Invite from <%= recipient.invite.sender.full_name %> for team <%= recipient.invite.team.name %>
+          <small>Sent on <%= recipient.created_at %></small>
+          <%= link_to accept_invite_path(recipient.token), 'Accept',
+            class: 'btn btn-success btn-sm margin-top-10' %>
+          <%= link_to decline_invite_path(recipient.token), 'Decline',
+            class: 'btn btn-error btn-sm margin-top-10' %>
+          <br />
+        <% end  %>
+      </div>
+    <% end %>
   </div>
   <div class="col-md-2"></div>
 </div>
