@@ -44,6 +44,6 @@ class ApplicationController < ActionController::Base
   end
 
   def latest_invites_for_user
-    current_user.invitations.where(accepted: nil)
+    current_user.invitations.where(accepted: nil).take
   end
 end
