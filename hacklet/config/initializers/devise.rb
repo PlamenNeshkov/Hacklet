@@ -1,5 +1,5 @@
 Devise.setup do |config|
-  config.mailer_sender = 'no-reply@hacklet.org'
+  config.mailer_sender = 'no-reply@hacktues.com'
   config.mailer = 'Devise::Mailer'
 
   require 'devise/orm/active_record'

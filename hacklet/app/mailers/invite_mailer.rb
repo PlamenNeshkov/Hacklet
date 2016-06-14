@@ -1,5 +1,5 @@
 class InviteMailer < ApplicationMailer
-  default from: 'invites@hacklet.org'
+  default from: 'no-reply@hacktues.com'
 
   def to_new(invite, recipient, invite_url)
     @invite = invite
