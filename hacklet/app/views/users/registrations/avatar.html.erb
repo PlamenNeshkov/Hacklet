@@ -1,7 +1,7 @@
 <%= render 'breadcrumbs' %>
 
-<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+<% if devise_mapping.confirmable? && @user.pending_reconfirmation? %>
+  <div>Currently waiting confirmation for: <%= @user.unconfirmed_email %></div>
 <% end %>
 
 <section>
@@ -9,10 +9,10 @@
     <div class="col-lg-9 col-md-9 col-sm-8 col-lg-push-3 col-md-push-3 col-sm-push-4 margin-bottom-80">
       <ul class="nav nav-tabs nav-top-border">
         <li>
-          <%= link_to 'General', user_settings_path(current_user) %>
+          <%= link_to 'General', user_settings_path(@user) %>
         </li>
         <li class="active">
-          <%= link_to 'Avatar', user_avatar_path(current_user) %>
+          <%= link_to 'Avatar', user_avatar_path(@user) %>
         </li>
       </ul>
       <div class="tab-content margin-top-20">

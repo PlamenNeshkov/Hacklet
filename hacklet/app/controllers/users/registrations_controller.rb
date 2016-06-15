@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :authenticate_user!, only: [:settings]
-  before_action :set_user, only: [:profile, :projects, :settings]
+  before_action :authenticate_user!, except: [:new, :create, :profile, :projects]
+  before_action :set_user, except: [:new, :create]
 
   def new
     @token = params[:invite_token]
@@ -54,13 +54,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def avatar
-    @user = current_user
   end
 
   def change_avatar
     respond_to do |format|
-      if current_user.update(account_update_params)
-        format.html { redirect_to profile_path(current_user),
+      if @user.update(account_update_params)
+        format.html { redirect_to profile_path(@user),
                       notice: "Your avatar has been changed successfully." }
       else
         format.html { render :avatar }
@@ -90,7 +89,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     def set_user
-      @user = User.find(params[:id])
+      user = User.find(params[:id])
+
+      if user
+        @user = user
+      elsif current_user
+        @user = current_user
+      else
+        flash[:notice] = "Invalid user specified.";
+        redirect_to home_path and return
+      end
     end
 
     # TODO: Extract to model?
