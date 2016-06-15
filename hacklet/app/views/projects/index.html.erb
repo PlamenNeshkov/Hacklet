@@ -21,14 +21,16 @@
 <section>
   <div class="container">
     <div id="portfolio" class="portfolio-nogutter">
+      <% if @projects.empty? %>
+        <div class="alert alert-bordered-dotted margin-bottom-30"><!-- DOTTED --></span>
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4><strong>No submitted projects found</strong></h4>
+          <p>Either there's a hackathon running and no one submitted their projects or the system has been reset.</p>
+       </div>
+      <% end %>
+
       <div class="row mix-grid">
-        <% if @projects.empty? %>
-          <div class="alert alert-bordered-dotted margin-bottom-30"><!-- DOTTED --></span>
-            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4><strong>No submitted projects found</strong></h4>
-            <p>Either there's a hackathon running and no one submitted their projects or the system has been reset.</p>
-          </div>
-        <% else %>
+        <% if @projects.any? %>
           <% @projects.each do |project| %>
             <% project.categories.each do |category| %>
               <div class="col-md-3 col-sm-3 mix <%= category.name %>">
