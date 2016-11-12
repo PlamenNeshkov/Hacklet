@@ -38,7 +38,6 @@ class InvitesController < ApplicationController
       @invite.recipients.each do |recipient|
         if recipient.has_assigned_user
           InviteMailer.to_user(@invite, recipient).deliver
-          recipient.user.teams.push(@invite.team)
         else
           InviteMailer.to_new(
             @invite,
@@ -79,6 +78,7 @@ class InvitesController < ApplicationController
       team = recipient.invite.team
       team.members << resource
       team.save
+      recipient.user.teams.push(@invite.team)
     end
   end
 end

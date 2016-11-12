@@ -29,7 +29,7 @@ class MentorsController < ApplicationController
         @pending = false
       end
 
-      if current_user.about_text != ''
+      unless current_user.about_text == '' || current_user.about_text.nil?
         @step[2] = 'complete'
 
         if current_user.site_url != '' || current_user.facebook_url != '' || current_user.twitter_url != ''
