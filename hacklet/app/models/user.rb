@@ -14,9 +14,9 @@ class User < ActiveRecord::Base
 
   validates :first_name, :last_name, presence: true
 
-  validates :twitter_url, :format => URI::regexp(%w(http https))
-  validates :facebook_url, :format => URI::regexp(%w(http https))
-  validates :site_url, :format => URI::regexp(%w(http https))
+  validates :twitter_url, :format => URI::regexp(%w(http https)), :allow_blank => true
+  validates :facebook_url, :format => URI::regexp(%w(http https)), :allow_blank => true
+  validates :site_url, :format => URI::regexp(%w(http https)), :allow_blank => true
 
   mount_uploader :avatar, AvatarUploader
   blogs
